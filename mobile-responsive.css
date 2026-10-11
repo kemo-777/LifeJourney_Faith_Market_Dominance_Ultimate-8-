@@ -1,30 +1,26 @@
-/* --- LifeJourney Mobile Responsive Styles --- */
 @media screen and (max-width: 768px) {
     body {
       font-size: 14px;
-      padding: 10px;
+      padding: 8px;
       margin: 0;
       overflow-x: hidden;
     }
   
-    /* تصحيح مقاسات الحاويات والأزرار لتناسب الشاشات الصغيرة */
-    .container, .main-card, .dashboard {
+    .container, .main-card, .dashboard, div, section {
       width: 100% !important;
       max-width: 100% !important;
-      padding: 15px !important;
-      margin: 0 auto !important;
-      box-sizing: border-box;
+      box-sizing: border-box !important;
+      border-radius: 12px !important;
     }
   
-    /* تكبير الأزرار لتكون سهلة الضغط بالإصبع */
     button, .btn, input, select {
       width: 100% !important;
-      min-height: 45px;
+      min-height: 48px !important;
       font-size: 16px !important;
-      margin-bottom: 10px;
+      border-radius: 10px !important;
+      margin-bottom: 12px !important;
     }
   
-    /* ضبط الجداول والقوائم للتمرير السلس */
     table {
       display: block;
       overflow-x: auto;
