@@ -1,0 +1,2635 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منظومة رحلة العمر وقبس الإيمان | LifeJourney & Faith Enterprise</title>
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#064e3b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="المنصة الشاملة لإدارة مراحل الحياة وتزكية النفس، تلعيب الأهداف، والفقه الميسر بثلاث لغات">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            },
+            gold: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Fonts & Icons & Libraries -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    body { font-family: 'Cairo', sans-serif; }
+
+    /* Mobile & Device Responsiveness optimizations */
+    @media (max-width: 640px) {
+      input, select, textarea {
+        font-size: 16px !important; /* Prevents auto-zoom in iOS Safari */
+      }
+    }
+    button, input, select, textarea {
+      touch-action: manipulation;
+    }
+
+    .quran-font { font-family: 'Amiri', serif; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #070b12; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; color: black !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-emerald-500 selection:text-white flex flex-col justify-between">
+
+  <!-- Top Quranic Ribbon & PWA Prompt -->
+  <div class="no-print bg-gradient-to-r from-emerald-950 via-slate-900 to-teal-950 border-b border-emerald-800/40 px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-3 text-emerald-200">
+    <div class="flex items-center gap-2">
+      <span class="p-1 rounded bg-emerald-500/20 text-emerald-400">🕌</span>
+      <span class="quran-font text-sm text-emerald-300">﴿ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴾</span>
+      <span class="hidden md:inline text-slate-400">|</span>
+      <span class="hidden md:inline text-slate-300" data-i18n="tagline">منظومة تنمية الإنسان وحسن الصلة بالرحمن</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <!-- PWA Install Button -->
+      <button id="pwa-install-btn" onclick="installPwaPrompt()" class="hidden items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] transition-all">
+        <i data-lucide="download" class="w-3.5 h-3.5"></i>
+        <span data-i18n="installApp">تثبيت التطبيق على جهازك</span>
+      </button>
+
+      <!-- Language Selector -->
+      <div class="flex items-center bg-slate-900 border border-slate-800 rounded-lg p-0.5 text-[11px]">
+        <button onclick="setLanguage('ar')" id="lang-ar-btn" class="px-2 py-0.5 rounded font-bold bg-emerald-600 text-white">العربية</button>
+        <button onclick="setLanguage('en')" id="lang-en-btn" class="px-2 py-0.5 rounded font-bold text-slate-400 hover:text-white">EN</button>
+        <button onclick="setLanguage('fr')" id="lang-fr-btn" class="px-2 py-0.5 rounded font-bold text-slate-400 hover:text-white">FR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="no-print border-b border-slate-900 bg-slate-950/90 backdrop-blur-xl sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      
+      <!-- Brand & Level -->
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-amber-500 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20">
+          <i data-lucide="sparkles" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base md:text-lg font-black bg-gradient-to-l from-white to-slate-300 bg-clip-text text-transparent" data-i18n="appName">
+              رحلة العمر وقبس الإيمان
+            </h1>
+            <span id="header-user-level" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30">
+              المستوى 1 (مبتدئ)
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-500 font-medium" data-i18n="appSubtitle">8 مراحل عمرية متكاملة دينياً ودنيوياً</p>
+        </div>
+      </div>
+
+      <!-- Streaks & XP Indicator (Gamification & Retention) -->
+      <div class="hidden lg:flex items-center gap-4 bg-slate-900/90 border border-slate-800 px-4 py-1.5 rounded-2xl">
+        <!-- Daily Streak -->
+        <div class="flex items-center gap-1.5 text-amber-400 font-black text-xs" title="أيام التزامك المتتالية">
+          <i data-lucide="flame" class="w-4 h-4 fill-amber-400 text-amber-500 animate-pulse"></i>
+          <span id="streak-counter">3 أيام التزام</span>
+        </div>
+        <div class="h-3 w-[1px] bg-slate-700"></div>
+        <!-- XP Points -->
+        <div class="flex items-center gap-1.5 text-emerald-400 font-bold text-xs">
+          <i data-lucide="zap" class="w-4 h-4 fill-emerald-400"></i>
+          <span id="header-xp">0 XP</span>
+        </div>
+        <div class="h-3 w-[1px] bg-slate-700"></div>
+        <!-- Hasanat / Good Deeds Counter -->
+        <div class="flex items-center gap-1.5 text-cyan-400 font-bold text-xs" title="رصيد التسبيح والأذكار">
+          <i data-lucide="heart" class="w-4 h-4 fill-cyan-400"></i>
+          <span id="tasbeeh-total-counter">0 تسبيحة</span>
+        </div>
+      </div>
+
+      <!-- Top Action Bar (Auth & Modals) -->
+      <div class="flex items-center gap-2">
+        <!-- Electronic Tasbeeh Shortcut -->
+        <button onclick="openTasbeehModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-950/60 hover:bg-emerald-900/80 border border-emerald-800/50 text-emerald-300 font-bold text-xs transition-all">
+          <i data-lucide="circle-dot" class="w-4 h-4 text-emerald-400"></i>
+          <span data-i18n="tasbeehBtn">المسبحة الإلكترونية</span>
+        </button>
+
+        <!-- Viral Share Card Generator -->
+        <button onclick="openShareCanvasModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white font-semibold text-xs transition-all">
+          <i data-lucide="share-2" class="w-4 h-4 text-amber-400"></i>
+          <span class="hidden sm:inline" data-i18n="shareCard">بطاقة الإنجاز</span>
+        </button>
+
+        <!-- Auth Button (Login/User Profile) -->
+        <div id="auth-header-slot">
+          <button onclick="openAuthModal('login')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 font-bold text-white text-xs transition-all shadow-md shadow-emerald-600/20">
+            <i data-lucide="log-in" class="w-4 h-4"></i>
+            <span data-i18n="login">تسجيل الدخول</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Body Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full space-y-6">
+
+    <!-- Hero / Quick Navigation Tabs: (رحلة العمر | فقه وأخلاق | تشخيص المسار | المؤسسات) -->
+    <div class="no-print bg-slate-900/80 border border-slate-800 rounded-2xl p-1.5 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto">
+        <button onclick="switchMainTab('stages')" id="tab-stages-btn" class="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white flex items-center gap-2 transition-all">
+          <i data-lucide="milestone" class="w-4 h-4"></i>
+          <span data-i18n="tabStages">محطات رحلة العمر (8 مراحل)</span>
+        </button>
+        <button onclick="switchMainTab('fiqh')" id="tab-fiqh-btn" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-2 transition-all">
+          <i data-lucide="book-marked" class="w-4 h-4 text-emerald-400"></i>
+          <span data-i18n="tabFiqh">دروس الفقه الميسر والأخلاق</span>
+        </button>
+        <button onclick="switchMainTab('diagnostic')" id="tab-diagnostic-btn" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-2 transition-all">
+          <i data-lucide="compass" class="w-4 h-4 text-blue-400"></i>
+          <span data-i18n="tabDiagnostic">اختبار تشخيص المسار الحياتي</span>
+        </button>
+        <button onclick="switchMainTab('quran-all')" id="tab-quran-all-btn" class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-1.5 transition-all">
+          <i data-lucide="book-open" class="w-4 h-4 text-emerald-400"></i>
+          <span>المصحف الشريف (114 سورة)</span>
+        </button>
+        <button onclick="switchMainTab('adhkar')" id="tab-adhkar-btn" class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-1.5 transition-all">
+          <i data-lucide="sparkles" class="w-4 h-4 text-cyan-400"></i>
+          <span>حصن المسلم والأذكار</span>
+        </button>
+        <button onclick="switchMainTab('kids-game')" id="tab-kids-game-btn" class="px-3.5 py-2 rounded-xl text-xs font-bold text-amber-400 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 flex items-center gap-1.5 transition-all">
+          <i data-lucide="gamepad-2" class="w-4 h-4 text-amber-400"></i>
+          <span>🎮 لعبة فرسان الإيمان للأطفال</span>
+        </button>
+        <button onclick="switchMainTab('quran')" id="tab-quran-btn" class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-1.5 transition-all">
+          <i data-lucide="book" class="w-4 h-4 text-amber-400"></i>
+          <span>الختمة (30 جزء)</span>
+        </button>
+        <button onclick="switchMainTab('institution')" id="tab-institution-btn" class="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-1.5 transition-all">
+          <i data-lucide="building-2" class="w-4 h-4 text-purple-400"></i>
+          <span data-i18n="tabInstitution">المؤسسات (B2B)</span>
+        </button>
+      </div>
+
+      <!-- Quick Action: Certificate -->
+      <div class="flex items-center gap-2">
+        <button onclick="openCertificateModal()" class="px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 text-xs font-bold flex items-center gap-1.5 transition-all">
+          <i data-lucide="file-badge" class="w-4 h-4"></i>
+          <span data-i18n="getCertificate">استخراج الشهادة الرسمية</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= SECTION 1: 8 LIFE STAGES TRACKER ================= -->
+    <div id="section-stages" class="space-y-6">
+      
+      <!-- Stage Timeline Bar -->
+      <div class="no-print">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-slate-400" data-i18n="stagesTimelineTitle">المراحل الثمانية من الولادة حتى ختام العمر:</span>
+          <span id="overall-percentage" class="text-xs font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2.5 py-0.5 rounded-full">
+            0% مكتمل
+          </span>
+        </div>
+        <div id="stages-nav-list" class="flex gap-2.5 overflow-x-auto pb-3"></div>
+      </div>
+
+      <!-- Stage Details Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Column 1: Vision, Mission & Faith Reflection (5 cols) -->
+        <section class="lg:col-span-5 space-y-6">
+          
+          <!-- Vision & Mission Card -->
+          <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 shadow-xl">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+              <span id="active-stage-badge" class="px-3 py-0.5 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                المرحلة 1
+              </span>
+              <span id="active-age-range" class="text-xs text-slate-400 font-semibold bg-slate-950 px-2.5 py-1 rounded-lg">
+                من الولادة حتى 3 سنوات
+              </span>
+            </div>
+
+            <h2 id="active-stage-title" class="text-lg font-black text-white mt-3 mb-3">--</h2>
+
+            <!-- Vision -->
+            <div class="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-3.5 mb-3">
+              <div class="flex items-center gap-1.5 text-emerald-400 font-bold text-xs mb-1">
+                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                <span data-i18n="strategicVision">الرؤية الاستراتيجية</span>
+              </div>
+              <p id="active-stage-vision" class="text-slate-300 text-xs leading-relaxed">--</p>
+            </div>
+
+            <!-- Mission -->
+            <div class="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-3.5 mb-3">
+              <div class="flex items-center gap-1.5 text-cyan-400 font-bold text-xs mb-1">
+                <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+                <span data-i18n="coreMission">الرسالة الجوهرية</span>
+              </div>
+              <p id="active-stage-mission" class="text-slate-300 text-xs leading-relaxed">--</p>
+            </div>
+
+            <!-- Spiritual / Islamic Touch for this stage -->
+            <div class="bg-emerald-950/30 border border-emerald-800/40 rounded-2xl p-3.5 mb-3">
+              <div class="flex items-center gap-1.5 text-amber-400 font-bold text-xs mb-1">
+                <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+                <span data-i18n="spiritualAdvice">القبس الإيماني والتربوي للمرحلة</span>
+              </div>
+              <p id="active-stage-spiritual" class="text-emerald-200 text-xs leading-relaxed quran-font text-base">
+                --
+              </p>
+            </div>
+
+            <!-- الحالة النفسية والاحتياج الوجداني للسن -->
+            <div class="bg-slate-950/80 border border-indigo-900/40 rounded-2xl p-3.5 mb-3">
+              <div class="flex items-center gap-1.5 text-indigo-400 font-bold text-xs mb-1">
+                <i data-lucide="brain" class="w-3.5 h-3.5"></i>
+                <span>طبيعة النفس في هذا السن (الاحتياج الوجداني):</span>
+              </div>
+              <p id="active-stage-psycho" class="text-slate-300 text-xs leading-relaxed">--</p>
+            </div>
+
+            <!-- العلاج والبلسم الإيماني الخاص -->
+            <div class="bg-emerald-950/30 border border-emerald-800/40 rounded-2xl p-3.5 mb-3">
+              <div class="flex items-center gap-1.5 text-emerald-400 font-bold text-xs mb-1">
+                <i data-lucide="sparkle" class="w-3.5 h-3.5"></i>
+                <span>البلسم النبوي والعلاج الإيماني للمرحلة:</span>
+              </div>
+              <p id="active-stage-medicine" class="text-emerald-200 text-xs leading-relaxed">--</p>
+            </div>
+
+            <!-- القصة النبوية الموجهة للسن -->
+            <div class="bg-gradient-to-r from-blue-950/40 to-slate-900 border border-blue-800/40 rounded-2xl p-3.5 mb-3">
+              <div class="flex items-center gap-1.5 text-blue-400 font-bold text-xs mb-1">
+                <i data-lucide="book-open-check" class="w-3.5 h-3.5"></i>
+                <span>من هدي الحبيب المصطفى ﷺ في هذا السن:</span>
+              </div>
+              <p id="active-stage-story" class="text-slate-200 text-xs leading-relaxed quran-font text-sm">--</p>
+            </div>
+
+            <!-- دعاء المرحلة المأثور -->
+            <div class="bg-gradient-to-r from-amber-950/40 to-slate-900 border border-amber-800/40 rounded-2xl p-3.5 mb-3">
+              <div class="flex items-center justify-between mb-1">
+                <div class="flex items-center gap-1.5 text-amber-400 font-bold text-xs">
+                  <i data-lucide="heart-handshake" class="w-3.5 h-3.5"></i>
+                  <span>دعاء وورد المرحلة المستجاب بإذن الله:</span>
+                </div>
+                <button onclick="copyDuaa()" class="text-[10px] text-amber-400/80 hover:text-amber-300 bg-amber-900/40 px-2 py-0.5 rounded">نسخ الدعاء</button>
+              </div>
+              <p id="active-stage-duaa" class="text-amber-200 text-xs leading-relaxed quran-font text-base pt-1">--</p>
+            </div>
+
+            <!-- Daily Habit: العادة الإيمانية اليومية -->
+            <div class="bg-slate-950/90 border border-teal-800/40 rounded-2xl p-3 flex items-center justify-between gap-3">
+              <div class="flex items-center gap-2">
+                <span class="p-1.5 rounded-lg bg-teal-500/10 text-teal-400">🌱</span>
+                <div>
+                  <span class="text-[10px] text-teal-400 font-bold block">العادة الإيمانية اليومية الموصى بها:</span>
+                  <span id="active-stage-habit" class="text-xs text-slate-200 font-semibold">--</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Life & Faith Coach Chat -->
+          <div class="no-print bg-gradient-to-b from-slate-900 to-slate-950 border border-blue-900/40 rounded-3xl p-6 shadow-xl">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center border border-blue-500/30">
+                  <i data-lucide="bot" class="w-4 h-4"></i>
+                </div>
+                <h3 class="text-xs font-black text-white" data-i18n="aiCoachTitle">المرشد الإيماني والحياتي الذكي</h3>
+              </div>
+              <span class="text-[10px] text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-800/40">توجيه فوري</span>
+            </div>
+
+            <div id="ai-chat-box" class="space-y-2 max-h-40 overflow-y-auto pr-1 text-xs mb-3">
+              <div class="bg-slate-950 p-2.5 rounded-2xl border border-slate-800 text-slate-300 leading-relaxed">
+                🌿 مرحباً بك! أنا مرشدك الإيماني والتربوي الذكي، اسألني عن أفضل السبل لتحقيق أهداف هذه المرحلة ورضا الله تعالى.
+              </div>
+            </div>
+
+            <div class="flex gap-2">
+              <input type="text" id="ai-user-query" placeholder="اطلب نصيحة في التربية أو التعامل أو تجاوز التحديات..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+              <button onclick="sendUserCoachQuery()" class="px-3 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition-all">
+                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Column 2: Practical Goals & Daily Deeds (7 cols) -->
+        <section class="lg:col-span-7 space-y-6">
+          
+          <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 shadow-xl">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800 mb-5">
+              <div class="flex items-center gap-2.5">
+                <div class="p-2 rounded-xl bg-amber-500/10 text-amber-400">
+                  <i data-lucide="check-check" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-white" data-i18n="goalsTitle">الأهداف الإجرائية والتربوية</h3>
+                  <p class="text-xs text-slate-400" data-i18n="goalsSubtitle">حدد ما تم إنجازه لتحصل على نقاط الـ XP وتعزيز رصيدك</p>
+                </div>
+              </div>
+
+              <span id="goals-count-badge" class="text-xs font-bold px-3 py-1 rounded-full bg-slate-800 text-emerald-400">
+                0 من 3 منجز
+              </span>
+            </div>
+
+            <!-- 5 Daily Prayers Live Habit Tracker (متابع الصلوات الخمس اليومي) -->
+            <div class="mb-5 p-4 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-slate-950 to-slate-900 border border-emerald-800/40">
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2 text-xs font-bold text-emerald-400">
+                  <i data-lucide="sun-medium" class="w-4 h-4"></i>
+                  <span>متابع الصلوات الخمس اليومي (نور يومك وبركته)</span>
+                </div>
+                <span id="prayers-done-count" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-900/60 text-emerald-300">0 / 5 صلوات</span>
+              </div>
+              <div class="grid grid-cols-5 gap-2 text-center text-xs" id="prayers-check-grid">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+
+            <!-- Goals List Box -->
+            <div id="goals-list-box" class="space-y-3"></div>
+          </div>
+
+          <!-- Reflections & Personal Diary -->
+          <div class="no-print bg-slate-900/90 border border-slate-800 rounded-3xl p-6 shadow-xl">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2 text-amber-400 font-bold text-xs">
+                <i data-lucide="feather" class="w-4 h-4"></i>
+                <span data-i18n="reflectionsTitle">دفتر الخواطر، التوبة، وشكر النعم</span>
+              </div>
+              <span id="notes-count-badge" class="text-[11px] bg-slate-800 text-slate-400 px-2.5 py-0.5 rounded-full">0 تدوينة</span>
+            </div>
+
+            <div class="flex gap-2 mb-3">
+              <input type="text" id="note-text-input" placeholder="سجل خاطرة، نعمة تشكر الله عليها، أو درساً حياتياً قيماً..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+              <button onclick="addStageNote()" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 font-bold text-white rounded-xl text-xs flex items-center gap-1.5 transition-all flex-shrink-0">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                <span data-i18n="saveNote">حفظ</span>
+              </button>
+            </div>
+
+            <div id="notes-render-list" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+
+    <!-- ================= SECTION 2: SIMPLIFIED FIQH & ETHICS (فقه وأخلاق) ================= -->
+    <div id="section-fiqh" class="hidden space-y-6">
+      <div class="bg-gradient-to-r from-emerald-950 via-slate-900 to-teal-950 border border-emerald-800/40 rounded-3xl p-6 md:p-8">
+        <div class="max-w-2xl">
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 mb-3 inline-block" data-i18n="fiqhBadge">
+            الفقه الميسر والآداب النبوية
+          </span>
+          <h2 class="text-2xl font-black text-white mb-2" data-i18n="fiqhHead">
+            دروس ميسرة تجعل كل قلب يحب الإسلام وأخلاقه
+          </h2>
+          <p class="text-xs md:text-sm text-emerald-200/80 leading-relaxed" data-i18n="fiqhSub">
+            الدين يسر، ومعاملة حسنة، وطهارة قلب وجسد. هنا تجد ما يحتاجه المسلم في يومه بأسلوب شيق وبسيط يناسب جميع الأعمار.
+          </p>
+        </div>
+      </div>
+
+      <!-- Fiqh Category Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Fiqh Card 1: الطهارة والصلاة -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4 hover:border-emerald-500/40 transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center">
+            <i data-lucide="droplet" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white" data-i18n="fiqhCard1Title">طهارة البدن والصلاة الخاشعة</h3>
+          <p class="text-xs text-slate-400 leading-relaxed" data-i18n="fiqhCard1Desc">
+            كيف تتوضأ وضوء النبي ﷺ؟ وسر الخشوع في الصلاة كراحة وسكينة للقلب وليست مجرد حركات تؤدى.
+          </p>
+          <ul class="text-xs text-slate-300 space-y-2 pt-2 border-t border-slate-800">
+            <li class="flex items-center gap-2"><span>✨</span> <span data-i18n="fiqhCard1P1">خطوات الوضوء السليم بماء قليل</span></li>
+            <li class="flex items-center gap-2"><span>🕌</span> <span data-i18n="fiqhCard1P2">الصلاة على وقتها أحب الأعمال إلى الله</span></li>
+            <li class="flex items-center gap-2"><span>🕊️</span> <span data-i18n="fiqhCard1P3">دعاء الاستفتاح وأسرار الفاتحة</span></li>
+          </ul>
+        </div>
+
+        <!-- Fiqh Card 2: بر الوالدين ومكارم الأخلاق -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4 hover:border-emerald-500/40 transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center">
+            <i data-lucide="smile" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white" data-i18n="fiqhCard2Title">بر الوالدين وحسن الخلق</h3>
+          <p class="text-xs text-slate-400 leading-relaxed" data-i18n="fiqhCard2Desc">
+            «إنما بُعثتُ لأتمم مكارم الأخلاق». كيف تكسب قلوب الناس بابتسامتك وصدقك ووفائك بالعهود؟
+          </p>
+          <ul class="text-xs text-slate-300 space-y-2 pt-2 border-t border-slate-800">
+            <li class="flex items-center gap-2"><span>💖</span> <span data-i18n="fiqhCard2P1">خفض الجناح للأب والأم ولين الكلام</span></li>
+            <li class="flex items-center gap-2"><span>🤝</span> <span data-i18n="fiqhCard2P2">كف الأذى وحب الخير للناس</span></li>
+            <li class="flex items-center gap-2"><span>🌟</span> <span data-i18n="fiqhCard2P3">أدب الاستئذان وإفشاء السلام</span></li>
+          </ul>
+        </div>
+
+        <!-- Fiqh Card 3: فقه المعاملات والمال الحلال -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4 hover:border-emerald-500/40 transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+            <i data-lucide="scale" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white" data-i18n="fiqhCard3Title">المال الحلال وبركة التجارة</h3>
+          <p class="text-xs text-slate-400 leading-relaxed" data-i18n="fiqhCard3Desc">
+            أخلاق التاجر المسلم الصدوق، وأحكام الأمانة والبعد عن الغش والربا، وبركة الصدقة السرية.
+          </p>
+          <ul class="text-xs text-slate-300 space-y-2 pt-2 border-t border-slate-800">
+            <li class="flex items-center gap-2"><span>🪙</span> <span data-i18n="fiqhCard3P1">الصدق في البيع والشراء يجلب البركة</span></li>
+            <li class="flex items-center gap-2"><span>🌱</span> <span data-i18n="fiqhCard3P2">«ما نقص مال من صدقة»</span></li>
+            <li class="flex items-center gap-2"><span>⚖️</span> <span data-i18n="fiqhCard3P3">إتقان العمل أمانة يسأل عنها العبد</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= SECTION 3: DIAGNOSTIC QUIZ ================= -->
+    <div id="section-diagnostic" class="hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 max-w-2xl mx-auto shadow-2xl text-center">
+        <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="compass" class="w-8 h-8"></i>
+        </div>
+        <h2 class="text-xl md:text-2xl font-black text-white mb-2" data-i18n="quizTitle">
+          اختبار تشخيص المسار الحياتي والروحي الذكي
+        </h2>
+        <p class="text-xs text-slate-400 mb-6" data-i18n="quizSub">
+          أجب عن 4 أسئلة سريعة لنحدد لك محطتك الحالية بدقة، ونقترح عليك خطة الأيام القادمة.
+        </p>
+
+        <div id="quiz-container" class="text-right space-y-4">
+          <!-- Step 1 -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
+            <label class="block text-xs font-bold text-slate-300 mb-2">1. ما هو عمرك الحالي؟</label>
+            <input type="number" id="quiz-age" placeholder="مثال: 21" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+          </div>
+          <!-- Step 2 -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
+            <label class="block text-xs font-bold text-slate-300 mb-2">2. ما هو التحدي الأكبر الذي يشغل بالك حالياً؟</label>
+            <select id="quiz-challenge" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+              <option value="habits">الانتظام في الصلاة والعبادة والتغلب على المعاصي والكسل</option>
+              <option value="career">تحديد المسار المهني والاستقلال المالي والحيرة المستقبلية</option>
+              <option value="family">مشاكل الأسرة، تربية الأبناء، والبحث عن استقرار البيت</option>
+              <option value="inner_peace">الضيق النفسي، القلق، والبحث عن السكينة والسلام الداخلي</option>
+            </select>
+          </div>
+
+          <!-- Step 3 (Optional Custom Detail) -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
+            <label class="block text-xs font-bold text-slate-300 mb-2">3. صف مشكلتك أو ما يؤرقك بكلماتك (اختياري لتحليل أعمق):</label>
+            <textarea id="quiz-custom-problem" rows="3" placeholder="مثلاً: أحاول المواظبة على صلاة الفجر لكني أتكاسل، أو أشعر بقلق على مستقبلي المهني..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-blue-500 resize-none"></textarea>
+          </div>
+
+          <button onclick="submitDiagnosticQuiz()" class="w-full py-3 bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-white font-bold rounded-xl text-xs transition-all shadow-lg">
+            تحليل مشكلتي وتقديم خطة الحل الشاملة
+          </button>
+        </div>
+
+        <div id="quiz-result" class="hidden mt-6 p-4 rounded-2xl bg-emerald-950/40 border border-emerald-800/60 text-right space-y-2">
+          <h4 class="text-sm font-bold text-emerald-300" id="quiz-res-title">--</h4>
+          <p class="text-xs text-slate-300 leading-relaxed" id="quiz-res-desc">--</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SECTION 4: INSTITUTION & B2B ================= -->
+    <div id="section-institution" class="hidden space-y-6">
+      <div class="bg-gradient-to-r from-purple-950 via-slate-900 to-indigo-950 border border-purple-800/40 rounded-3xl p-6 md:p-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 mb-2 inline-block">
+              نظام إدارة الحضانات والمدارس ومراكز التحفيظ (B2B Multi-Tenancy)
+            </span>
+            <h2 class="text-xl md:text-2xl font-black text-white">لوحة الإشراف المؤسسي الموحد</h2>
+            <p class="text-xs text-purple-200/80 mt-1">تابع تقدم الطلاب، أرسل تقارير أولياء الأمور التلقائية، وخصص مناهج الأهداف.</p>
+          </div>
+          <button onclick="exportInstitutionReport()" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl flex items-center gap-2 self-start md:self-auto">
+            <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+            <span>تصدير تقرير الطلاب (Excel / CSV)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Trainees Mock Roster -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
+        <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
+          <h3 class="text-sm font-bold text-white">قائمة المنتسبين والمتابعة التربوية:</h3>
+          <span class="text-xs text-slate-400">عدد المقيدين: 3 طلاب تجريبيين</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-right text-slate-300">
+            <thead class="bg-slate-950 text-slate-400 border-b border-slate-800">
+              <tr>
+                <th class="p-3">اسم الطالب / المتدرب</th>
+                <th class="p-3">المرحلة الحالية</th>
+                <th class="p-3">نسبة الأهداف</th>
+                <th class="p-3">حفظ الأذكار</th>
+                <th class="p-3">الإجراء السريع</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800">
+              <tr>
+                <td class="p-3 font-bold text-white">يوسف أحمد</td>
+                <td class="p-3">رياض الأطفال (3 - 6 سنوات)</td>
+                <td class="p-3 text-emerald-400 font-bold">85%</td>
+                <td class="p-3 text-cyan-400 font-bold">120 تسبيحة</td>
+                <td class="p-3">
+                  <button onclick="sendWhatsAppReport('يوسف أحمد', 'رياض الأطفال (3-6 سنوات)', '85%', 120)" class="px-2.5 py-1 rounded bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all text-[11px]">
+                    إرسال تقرير ولي الأمر 📲
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">فاطمة الزهراء</td>
+                <td class="p-3">المدرسة الابتدائية (6 - 12 سنة)</td>
+                <td class="p-3 text-emerald-400 font-bold">92%</td>
+                <td class="p-3 text-cyan-400 font-bold">340 تسبيحة</td>
+                <td class="p-3">
+                  <button onclick="sendWhatsAppReport('فاطمة الزهراء', 'المدرسة الابتدائية (6-12 سنة)', '92%', 340)" class="px-2.5 py-1 rounded bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all text-[11px]">
+                    إرسال تقرير ولي الأمر 📲
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-white">عمر خالد</td>
+                <td class="p-3">المراهقة والشباب (12 - 18 سنة)</td>
+                <td class="p-3 text-amber-400 font-bold">60%</td>
+                <td class="p-3 text-cyan-400 font-bold">90 تسبيحة</td>
+                <td class="p-3">
+                  <button onclick="sendWhatsAppReport('عمر خالد', 'المراهقة والشباب (12-18 سنة)', '60%', 90)" class="px-2.5 py-1 rounded bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all text-[11px]">
+                    إرسال تقرير ولي الأمر 📲
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  
+    <!-- ================= SECTION 5: GROUP QURAN KHATMA (الختمة الجماعية) ================= -->
+    <div id="section-quran" class="hidden space-y-6">
+      <div class="bg-gradient-to-r from-amber-950 via-slate-900 to-emerald-950 border border-amber-800/40 rounded-3xl p-6 md:p-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-2 inline-block">
+              توزيع الأجزاء وتنافس في الخيرات
+            </span>
+            <h2 class="text-xl md:text-2xl font-black text-white">متابعة ختمة القرآن الكريم الجماعية</h2>
+            <p class="text-xs text-amber-200/80 mt-1">اضغط على أي جزء لقراءته وتحديده كمكتمل للمساهمة في ختمة الأسرة أو المركز.</p>
+          </div>
+          <div class="bg-slate-950/80 border border-amber-800/40 px-4 py-2 rounded-2xl text-center">
+            <span class="text-[10px] text-slate-400 block">إنجاز الختمة الكلية</span>
+            <span id="khatma-progress-text" class="text-lg font-black text-amber-400">0 / 30 جزء</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 30 Juz Grid -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-3" id="juz-grid-container">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+    </div>
+
+  
+    <!-- ================= SECTION 6: COMPLETE QURAN (114 SURAHS & AUDIO RECITER) ================= -->
+    <div id="section-quran-all" class="hidden space-y-6">
+      <div class="bg-gradient-to-r from-emerald-950 via-slate-900 to-teal-950 border border-emerald-800/40 rounded-3xl p-6 md:p-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 mb-2 inline-block">
+              كتاب الله المعجز — نور القلوب
+            </span>
+            <h2 class="text-xl md:text-2xl font-black text-white">المصحف الشريف كاملاً (114 سورة) مع الاستماع الصوتي</h2>
+            <p class="text-xs text-emerald-200/80 mt-1">تصفح كل سور القرآن الكريم، وتعرف على أعداد آياتها وأماكن نزولها، واستمع لتلاوة خاشعة بصوت مشاري العفاسي.</p>
+          </div>
+          <div class="w-full md:w-72">
+            <input type="text" id="surah-search-input" oninput="filterSurahsList()" placeholder="ابحث عن اسم السورة..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
+        <!-- Live Audio Player Bar -->
+        <div id="quran-audio-player-bar" class="mt-5 p-4 rounded-2xl bg-slate-950/90 border border-emerald-700/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+              <i data-lucide="volume-2" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <span class="text-[10px] text-slate-400 block">المشغل الصوتي المباشر (القارئ: مشاري راشد العفاسي)</span>
+              <span id="current-playing-surah-title" class="text-sm font-bold text-white">سورة الفاتحة</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <audio id="quran-audio-element" controls class="h-9 w-full sm:w-64 max-w-full">
+              <source id="quran-audio-source" src="https://server8.mp3quran.net/afs/001.mp3" type="audio/mpeg">
+              متصفحك لا يدعم مشغل الصوتيات.
+            </audio>
+          </div>
+        </div>
+      </div>
+
+      <!-- Surahs Grid (114 Surahs) -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3" id="all-surahs-grid">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ================= SECTION 7: COMPREHENSIVE ADHKAR (حصن المسلم) ================= -->
+    <div id="section-adhkar" class="hidden space-y-6">
+      <div class="bg-gradient-to-r from-teal-950 via-slate-900 to-cyan-950 border border-teal-800/40 rounded-3xl p-6 md:p-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-teal-500/20 text-teal-300 border border-teal-500/30 mb-2 inline-block">
+              ألا بذكر الله تطمئن القلوب
+            </span>
+            <h2 class="text-xl md:text-2xl font-black text-white">حصن المسلم والأذكار والأدعية اليومية الجامعة</h2>
+            <p class="text-xs text-teal-200/80 mt-1">حصّن يومك بأذكار الصباح والمساء ودبر الصلوات مع عداد ذكي تفاعلي لكل ذكر.</p>
+          </div>
+          <div class="flex items-center gap-2 overflow-x-auto pb-1" id="adhkar-category-tabs">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Adhkar List -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-3" id="active-adhkar-list">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+
+    <!-- ================= SECTION 8: KIDS FAITH GAME (فرسان الإيمان) ================= -->
+    <div id="section-kids-game" class="hidden space-y-6">
+      <div class="bg-gradient-to-r from-amber-950 via-purple-950 to-slate-900 border-2 border-amber-500/40 rounded-3xl p-6 md:p-8 text-center relative overflow-hidden">
+        <div class="w-16 h-16 rounded-3xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-3 border border-amber-500/40 shadow-xl shadow-amber-500/10">
+          <i data-lucide="gamepad-2" class="w-9 h-9"></i>
+        </div>
+        <span class="text-xs font-extrabold uppercase tracking-widest text-amber-400">مغامرة الأبطال الصغار</span>
+        <h2 class="text-2xl md:text-3xl font-black text-white mt-1 mb-2">لعبة فرسان الإيمان: مغامرة بطل النور</h2>
+        <p class="text-xs md:text-sm text-amber-200 max-w-xl mx-auto leading-relaxed">
+          انطلق في مغامرات شيقة! اختر الموقف الإسلامي الصحيح، واجمع حسنات ونقاط XP لتفتح قلاع الخير وتبني قصرك في الجنة.
+        </p>
+
+        <!-- Game Score Bar -->
+        <div class="flex items-center justify-center gap-4 mt-6">
+          <div class="bg-slate-950/80 border border-amber-500/30 px-5 py-2 rounded-2xl flex items-center gap-2">
+            <span class="text-xs text-slate-400">وسام البطل:</span>
+            <span id="game-knight-rank" class="text-xs font-black text-amber-400">الفارس الصادق 🛡️</span>
+          </div>
+          <div class="bg-slate-950/80 border border-amber-500/30 px-5 py-2 rounded-2xl flex items-center gap-2">
+            <span class="text-xs text-slate-400">رصيد الحسنات:</span>
+            <span id="game-score-display" class="text-sm font-black text-emerald-400">0 حسنة</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Current Quest Card Area -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 max-w-3xl mx-auto shadow-2xl space-y-6" id="kids-quest-box">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= MODALS & OVERLAYS ================= -->
+
+  <!-- 1. AUTH MODAL (Login / Signup / Forgot Password) -->
+  <div id="auth-modal" class="no-print fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 max-w-md w-full shadow-2xl relative">
+      <button onclick="closeAuthModal()" class="absolute top-5 left-5 text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Welcome Header in Modal -->
+      <div class="text-center mb-5">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-2 border border-emerald-500/30">
+          <i data-lucide="sparkles" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-lg font-black text-white">مرحباً بك في رحلة العمر وقبس الإيمان</h3>
+        <p class="text-xs text-slate-400 mt-1">سجّل دخولك لحفظ مسار نموك وطاعاتك عبر جميع أجهزتك</p>
+      </div>
+
+      <!-- Auth Tabs -->
+      <div class="flex justify-around border-b border-slate-800 mb-6 pb-2 gap-2 text-center">
+        <button onclick="switchAuthTab('login')" id="tab-auth-login" class="text-xs sm:text-sm font-bold text-emerald-400 border-b-2 border-emerald-400 pb-2 flex-1">تسجيل الدخول</button>
+        <button onclick="switchAuthTab('signup')" id="tab-auth-signup" class="text-xs sm:text-sm font-bold text-slate-400 hover:text-white pb-2 flex-1">إنشاء حساب جديد</button>
+        <button onclick="switchAuthTab('forgot')" id="tab-auth-forgot" class="text-xs sm:text-sm font-bold text-slate-400 hover:text-white pb-2 flex-1">نسيت كلمة المرور</button>
+      </div>
+
+      <!-- Form: Login -->
+      <form id="form-login" onsubmit="handleAuthSubmit(event, 'login')" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">البريد الإلكتروني:</label>
+          <input type="email" id="login-email" required placeholder="user@example.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-emerald-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">كلمة المرور:</label>
+          <input type="password" id="login-pass" required placeholder="••••••••" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-emerald-500">
+        </div>
+        <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition-all shadow-lg shadow-emerald-600/20">
+          دخول إلى حسابي
+        </button>
+      </form>
+
+      <!-- Form: Signup -->
+      <form id="form-signup" onsubmit="handleAuthSubmit(event, 'signup')" class="hidden space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">الاسم بالكامل:</label>
+          <input type="text" id="signup-name" required placeholder="مثال: عبد الرحمن محمد" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">البريد الإلكتروني:</label>
+          <input type="email" id="signup-email" required placeholder="user@example.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">تاريخ الميلاد:</label>
+          <input type="date" id="signup-dob" value="2000-01-01" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">كلمة المرور الجديدة:</label>
+          <input type="password" id="signup-pass" required minlength="6" placeholder="••••••••" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+        </div>
+        <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition-all shadow-lg shadow-emerald-600/20">
+          إنشاء حساب فوري مجاني
+        </button>
+      </form>
+
+      <!-- Form: Forgot Password -->
+      <form id="form-forgot" onsubmit="handleAuthSubmit(event, 'forgot')" class="hidden space-y-4">
+        <p class="text-xs text-slate-400">أدخل بريدك الإلكتروني وسنرسل لك رمزاً فورياً لاستعادة الحساب وضبط كلمة مرور جديدة:</p>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">البريد الإلكتروني المسجل:</label>
+          <input type="email" id="forgot-email" required placeholder="user@example.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-emerald-500">
+        </div>
+        <button type="submit" class="w-full py-3 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-xl text-xs transition-all shadow-lg shadow-amber-600/20">
+          إرسال رمز إعادة التعيين
+        </button>
+      </form>
+
+      <div class="mt-4 pt-3 border-t border-slate-800 text-center">
+        <button type="button" onclick="continueAsGuest()" class="text-xs text-slate-400 hover:text-emerald-400 font-semibold transition-colors flex items-center justify-center gap-1.5 mx-auto">
+          <span>أو المتابعة كزائر واستكشاف المنظومة</span>
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2. ELECTRONIC TASBEEH MODAL (المسبحة والأذكار) -->
+  <div id="tasbeeh-modal" class="no-print fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-emerald-800/50 rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl relative text-center">
+      <button onclick="closeTasbeehModal()" class="absolute top-4 left-4 text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <span class="text-xs text-emerald-400 font-bold uppercase tracking-wider">المسبحة الإلكترونية الذكية</span>
+      <h3 class="text-lg font-black text-white mt-1 mb-4" id="active-dhikr-phrase">سبحان الله وبحمده</h3>
+
+      <!-- Big Counter Display -->
+      <div class="w-36 h-36 mx-auto rounded-full bg-gradient-to-tr from-emerald-950 to-slate-900 border-4 border-emerald-500/40 flex flex-col items-center justify-center shadow-xl shadow-emerald-500/10 mb-6 cursor-pointer select-none active:scale-95 transition-transform" onclick="incrementTasbeeh()">
+        <span id="tasbeeh-count" class="text-4xl font-black text-white font-mono">0</span>
+        <span class="text-[10px] text-emerald-400 font-bold mt-1">اضغط للتسبيح</span>
+      </div>
+
+      <!-- Quick Dhikr Selectors -->
+      <div class="grid grid-cols-2 gap-2 mb-4 text-xs">
+        <button onclick="changeDhikr('سبحان الله وبحمده')" class="p-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 hover:border-emerald-500">سبحان الله</button>
+        <button onclick="changeDhikr('الحمد لله رب العالمين')" class="p-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 hover:border-emerald-500">الحمد لله</button>
+        <button onclick="changeDhikr('لا إله إلا الله وحده لا شريك له')" class="p-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 hover:border-emerald-500">لا إله إلا الله</button>
+        <button onclick="changeDhikr('اللهم صل وسلم على نبينا محمد')" class="p-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 hover:border-emerald-500">الصلاة على النبي</button>
+      </div>
+
+      <button onclick="resetTasbeeh()" class="text-xs text-slate-500 hover:text-rose-400 transition-colors">
+        تصفير العداد الحالي
+      </button>
+    </div>
+  </div>
+
+  <!-- 3. VIRAL SOCIAL CANVAS CARD (بطاقة الإنجاز القابلة للمشاركة) -->
+  <div id="share-modal" class="no-print fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-md w-full shadow-2xl relative text-center">
+      <button onclick="closeShareModal()" class="absolute top-4 left-4 text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <h3 class="text-base font-bold text-white mb-2">بطاقة فخر الإنجاز (للنشر على السوشيال)</h3>
+      <p class="text-xs text-slate-400 mb-4">شارك تقدمك على واتساب، إنستغرام، وتويتر وألهم أصدقاءك بالنمو والعمل الصالح:</p>
+
+      <!-- The Card to Capture -->
+      <div id="canvas-card" class="bg-gradient-to-tr from-slate-950 via-emerald-950 to-slate-900 border-2 border-emerald-500/50 rounded-2xl p-6 text-center space-y-4 shadow-2xl relative overflow-hidden">
+        <div class="flex items-center justify-center gap-2 text-emerald-400 text-xs font-bold">
+          <i data-lucide="crown" class="w-4 h-4"></i>
+          <span>منظومة رحلة العمر وقبس الإيمان</span>
+        </div>
+
+        <div class="py-2">
+          <span class="text-xs text-slate-400">إنجاز البطل:</span>
+          <h4 id="canvas-user-name" class="text-xl font-black text-white">عبد الرحمن محمد</h4>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 py-3 border-y border-emerald-800/40 text-xs">
+          <div class="bg-slate-950/60 p-2.5 rounded-xl border border-emerald-800/30">
+            <span class="text-slate-400 block text-[10px]">معدل النمو الحياتي:</span>
+            <span id="canvas-pct" class="text-lg font-black text-emerald-400">85%</span>
+          </div>
+          <div class="bg-slate-950/60 p-2.5 rounded-xl border border-emerald-800/30">
+            <span class="text-slate-400 block text-[10px]">نقاط الهمة (XP):</span>
+            <span id="canvas-xp" class="text-lg font-black text-amber-400">450 XP</span>
+          </div>
+        </div>
+
+        <p class="text-[11px] text-emerald-200/90 leading-relaxed quran-font text-sm">
+          «وَأَن لَّيْسَ لِلْإِنسَانِ إِلَّا مَا سَعَىٰ • وَأَنَّ سَعْيَهُ سَوْفَ يُرَىٰ»
+        </p>
+
+        <div class="text-[10px] text-slate-500">
+          انضم إلينا وابدأ رحلتك من المهد إلى اللحد مجاناً
+        </div>
+      </div>
+
+      <div class="mt-4 flex gap-2">
+        <button onclick="downloadShareCard()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all shadow-md">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>تحميل الصورة (PNG)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. OFFICIAL CERTIFICATE MODAL (Printable & PDF Ready) -->
+  <div id="cert-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 max-w-2xl w-full shadow-2xl relative">
+      <button onclick="closeCertificateModal()" class="no-print absolute top-5 left-5 text-slate-400 hover:text-white p-1 rounded-lg">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Printable Certificate Canvas Area -->
+      <div class="certificate-container bg-gradient-to-b from-slate-950 to-slate-900 border-4 border-double border-amber-500/60 rounded-2xl p-8 text-center relative overflow-hidden">
+        <div class="flex justify-center mb-3">
+          <div class="w-14 h-14 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/40">
+            <i data-lucide="award" class="w-8 h-8"></i>
+          </div>
+        </div>
+
+        <span class="text-[11px] uppercase tracking-widest text-amber-400 font-bold">منظومة رحلة العمر وقبس الإيمان</span>
+        <h2 class="text-2xl font-black text-white mt-1 mb-2">شهادة إتمام وتزكية رسمية</h2>
+        <p class="text-xs text-slate-400">تُمنح هذه الشهادة تقديراً للجد والاجتهاد وتحقيق الأهداف التربوية والإيمانية في:</p>
+
+        <h3 id="cert-stage-name" class="text-lg font-black text-emerald-400 my-3">--</h3>
+
+        <div class="max-w-md mx-auto my-4 py-2 border-y border-slate-800">
+          <span class="text-xs text-slate-400 block mb-1">اسم الحاصل على الشهادة:</span>
+          <input type="text" id="cert-user-name" value="المثابر الصالح" class="bg-transparent text-center text-lg font-bold text-white focus:outline-none border-b border-dotted border-amber-400/50 pb-1">
+        </div>
+
+        <p class="text-[11px] text-slate-400 max-w-lg mx-auto leading-relaxed">
+          بإتمامه لكافة الأهداف الإجرائية والآداب المقررة لهذه المحطة من رحلة العمر. جعله الله ذخراً لمجتمعه وأمته.
+        </p>
+
+        <div class="flex items-center justify-between pt-6 mt-6 border-t border-slate-800 text-[11px] text-slate-400">
+          <div>
+            <span class="block font-semibold">تاريخ التوثيق:</span>
+            <span id="cert-date" class="text-slate-300">--</span>
+          </div>
+          <div class="text-left">
+            <span class="block font-semibold">الاعتماد:</span>
+            <span class="text-amber-400 font-black">إدارة منظومة رحلة العمر</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="no-print mt-6 flex items-center justify-end gap-3">
+        <button onclick="window.print()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition-all flex items-center gap-2 shadow-lg shadow-emerald-600/20">
+          <i data-lucide="printer" class="w-4 h-4"></i>
+          <span>طباعة الشهادة الرسمية (PDF)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="no-print border-t border-slate-900 bg-slate-950/90 py-5 mt-10 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <span>منظومة رحلة العمر وقبس الإيمان © 2026 - نظام تربوي مؤسسي متكامل</span>
+      <div class="flex items-center gap-4 text-slate-400 text-[11px]">
+        <span class="hover:text-emerald-400 cursor-pointer" onclick="switchMainTab('fiqh')">الفقه الميسر</span>
+        <span class="hover:text-emerald-400 cursor-pointer" onclick="openTasbeehModal()">الأذكار</span>
+        <span class="hover:text-emerald-400 cursor-pointer" onclick="switchMainTab('institution')">حساب المؤسسات</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MASTER TRANSLATIONS & CLIENT ENGINE ================= -->
+  <script>
+    // 1. Trilingual Dictionary (AR / EN / FR)
+    const i18n = {
+      ar: {
+        appName: "رحلة العمر وقبس الإيمان",
+        appSubtitle: "8 مراحل عمرية متكاملة دينياً ودنيوياً",
+        tagline: "منظومة تنمية الإنسان وحسن الصلة بالرحمن",
+        tasbeehBtn: "المسبحة الإلكترونية",
+        shareCard: "بطاقة الإنجاز",
+        login: "تسجيل الدخول",
+        logout: "تسجيل الخروج",
+        tabStages: "محطات رحلة العمر (8 مراحل)",
+        tabFiqh: "دروس الفقه الميسر والأخلاق",
+        tabDiagnostic: "اختبار تشخيص المسار الحياتي",
+        tabInstitution: "إدارة المؤسسات والحضانات (B2B)",
+        getCertificate: "استخراج الشهادة الرسمية",
+        stagesTimelineTitle: "المراحل الثمانية من الولادة حتى ختام العمر:",
+        strategicVision: "الرؤية الاستراتيجية",
+        coreMission: "الرسالة الجوهرية",
+        spiritualAdvice: "القبس الإيماني والتربوي للمرحلة",
+        aiCoachTitle: "المرشد الإيماني والحياتي الذكي",
+        goalsTitle: "الأهداف الإجرائية والتربوية",
+        goalsSubtitle: "حدد ما تم إنجازه لتحصل على نقاط الـ XP وتعزيز رصيدك",
+        reflectionsTitle: "دفتر الخواطر، التوبة، وشكر النعم",
+        saveNote: "حفظ",
+        installApp: "تثبيت التطبيق على جهازك",
+        fiqhBadge: "الفقه الميسر والآداب النبوية",
+        fiqhHead: "دروس ميسرة تجعل كل قلب يحب الإسلام وأخلاقه",
+        fiqhSub: "الدين يسر، ومعاملة حسنة، وطهارة قلب وجسد. هنا تجد ما يحتاجه المسلم في يومه بأسلوب شيق وبسيط يناسب جميع الأعمار.",
+        fiqhCard1Title: "طهارة البدن والصلاة الخاشعة",
+        fiqhCard1Desc: "كيف تتوضأ وضوء النبي ﷺ؟ وسر الخشوع في الصلاة كراحة وسكينة للقلب وليست مجرد حركات تؤدى.",
+        fiqhCard1P1: "خطوات الوضوء السليم بماء قليل",
+        fiqhCard1P2: "الصلاة على وقتها أحب الأعمال إلى الله",
+        fiqhCard1P3: "دعاء الاستفتاح وأسرار الفاتحة",
+        fiqhCard2Title: "بر الوالدين وحسن الخلق",
+        fiqhCard2Desc: "«إنما بُعثتُ لأتمم مكارم الأخلاق». كيف تكسب قلوب الناس بابتسامتك وصدقك ووفائك بالعهود؟",
+        fiqhCard2P1: "خفض الجناح للأب والأم ولين الكلام",
+        fiqhCard2P2: "كف الأذى وحب الخير للناس",
+        fiqhCard2P3: "أدب الاستئذان وإفشاء السلام",
+        fiqhCard3Title: "المال الحلال وبركة التجارة",
+        fiqhCard3Desc: "أخلاق التاجر المسلم الصدوق، وأحكام الأمانة والبعد عن الغش والربا، وبركة الصدقة السرية.",
+        fiqhCard3P1: "الصدق في البيع والشراء يجلب البركة",
+        fiqhCard3P2: "«ما نقص مال من صدقة»",
+        fiqhCard3P3: "إتقان العمل أمانة يسأل عنها العبد",
+        quizTitle: "اختبار تشخيص المسار الحياتي والروحي الذكي",
+        quizSub: "أجب عن 4 أسئلة سريعة لنحدد لك محطتك الحالية بدقة، ونقترح عليك خطة الأيام القادمة."
+      },
+      en: {
+        appName: "LifeJourney & Faith",
+        appSubtitle: "8 Life Stages Integrated in Faith & Growth",
+        tagline: "Human Development & Closeness to the Creator",
+        tasbeehBtn: "Digital Tasbeeh",
+        shareCard: "Share Progress",
+        login: "Sign In",
+        logout: "Sign Out",
+        tabStages: "8 Life Stages Roadmap",
+        tabFiqh: "Simplified Fiqh & Ethics",
+        tabDiagnostic: "Life Diagnostic Quiz",
+        tabInstitution: "Institutions & Schools (B2B)",
+        getCertificate: "Official Certificate",
+        stagesTimelineTitle: "The Eight Life Stages from Birth to Beyond:",
+        strategicVision: "Strategic Vision",
+        coreMission: "Core Mission",
+        spiritualAdvice: "Faith & Spiritual Spark",
+        aiCoachTitle: "Smart Faith & Life Coach",
+        goalsTitle: "Actionable & Faith Goals",
+        goalsSubtitle: "Mark goals complete to earn XP and strengthen your journey",
+        reflectionsTitle: "Reflections & Gratitude Journal",
+        saveNote: "Save",
+        installApp: "Install App on Device",
+        fiqhBadge: "Simplified Fiqh & Prophetic Morals",
+        fiqhHead: "Gentle lessons to make every heart cherish Islam",
+        fiqhSub: "Religion is ease, noble character, and purity of soul. Here you find essential guidance tailored for all ages.",
+        fiqhCard1Title: "Purity & Mindful Prayer",
+        fiqhCard1Desc: "How to perform ablution (Wudu) and discover tranquility in prayer as peace of mind, not just mechanical gestures.",
+        fiqhCard1P1: "Proper Wudu with minimal water waste",
+        fiqhCard1P2: "Praying on time is most beloved to God",
+        fiqhCard1P3: "Supplications and secrets of Al-Fatiha",
+        fiqhCard2Title: "Honoring Parents & Noble Ethics",
+        fiqhCard2Desc: "'I was sent to perfect good character.' Winning hearts through kindness, honesty, and fulfilling promises.",
+        fiqhCard2P1: "Humility and gentle speech to parents",
+        fiqhCard2P2: "Restraining harm and wishing good for all",
+        fiqhCard2P3: "Etiquette of greeting and seeking permission",
+        fiqhCard3Title: "Halal Wealth & Blessed Commerce",
+        fiqhCard3Desc: "Ethics of the trustworthy merchant, honesty, avoiding deceit, and the immense blessing of charity.",
+        fiqhCard3P1: "Honesty in trade brings divine blessing",
+        fiqhCard3P2: "'Charity never decreases wealth'",
+        fiqhCard3P3: "Mastery of work is a sacred trust",
+        quizTitle: "Smart Life & Spiritual Diagnostic",
+        quizSub: "Answer quick questions to identify your current stage and customized roadmap."
+      },
+      fr: {
+        appName: "Voyage de Vie & Foi",
+        appSubtitle: "8 étapes de vie intégrées entre foi et épanouissement",
+        tagline: "Développement humain et proximité avec le Créateur",
+        tasbeehBtn: "Chapelet Électronique",
+        shareCard: "Partager l'Accomplissement",
+        login: "Connexion",
+        logout: "Déconnexion",
+        tabStages: "Les 8 Étapes de la Vie",
+        tabFiqh: "Fiqh Simplifié & Éthique",
+        tabDiagnostic: "Diagnostic de Vie",
+        tabInstitution: "Écoles & Organisations (B2B)",
+        getCertificate: "Certificat Officiel",
+        stagesTimelineTitle: "Les 8 étapes de la naissance à la sagesse:",
+        strategicVision: "Vision Stratégique",
+        coreMission: "Mission Principale",
+        spiritualAdvice: "Lueur Spirituelle de l'Étape",
+        aiCoachTitle: "Coach de Vie & Foi Intelligent",
+        goalsTitle: "Objectifs Pratiques & Spirituels",
+        goalsSubtitle: "Validez vos objectifs pour gagner des XP et progresser",
+        reflectionsTitle: "Journal de Gratitude et Méditation",
+        saveNote: "Enregistrer",
+        installApp: "Installer sur l'Appareil",
+        fiqhBadge: "Fiqh Simplifié & Éthique Prophétique",
+        fiqhHead: "Des leçons douces pour faire aimer l'Islam à chaque cœur",
+        fiqhSub: "La religion est facilité, noblesse de caractère et pureté. Retrouvez l'essentiel adapté à chaque âge.",
+        fiqhCard1Title: "Pureté & Prière Apaisée",
+        fiqhCard1Desc: "Comment faire les ablutions et trouver la paix intérieure dans la prière.",
+        fiqhCard1P1: "Les ablutions parfaites sans gaspillage",
+        fiqhCard1P2: "La prière à l'heure, l'œuvre la plus aimée",
+        fiqhCard1P3: "Invocations et secrets de la Fatiha",
+        fiqhCard2Title: "Respect des Parents & Bon Comportement",
+        fiqhCard2Desc: "'Je n'ai été envoyé que pour parfaire les nobles caractères.' Gagner les cœurs par la bienveillance.",
+        fiqhCard2P1: "Douceur et respect absolu envers les parents",
+        fiqhCard2P2: "Éviter de nuire et vouloir le bien d'autrui",
+        fiqhCard2P3: "Politesse, salutations et courtoisie",
+        fiqhCard3Title: "Gains Licites & Commerce Éthique",
+        fiqhCard3Desc: "L'éthique du commerçant honnête, l'intégrité et la bénédiction de l'aumône.",
+        fiqhCard3P1: "L'honnêteté attire la bénédiction divine",
+        fiqhCard3P2: "'L'aumône ne diminue en rien la richesse'",
+        fiqhCard3P3: "L'excellence au travail est une responsabilité",
+        quizTitle: "Diagnostic de Vie & Foi",
+        quizSub: "Répondez aux questions pour découvrir votre étape et plan d'action."
+      }
+    };
+
+    let currentLang = localStorage.getItem('life_app_lang') || 'ar';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('life_app_lang', lang);
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+      // Update toggle buttons active class
+      ['ar', 'en', 'fr'].forEach(l => {
+        const btn = document.getElementById(`lang-` + l + `-btn`);
+        if (btn) {
+          if (l === lang) {
+            btn.className = "px-2 py-0.5 rounded font-bold bg-emerald-600 text-white";
+          } else {
+            btn.className = "px-2 py-0.5 rounded font-bold text-slate-400 hover:text-white";
+          }
+        }
+      });
+
+      // Update text in elements with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang] && i18n[lang][key]) {
+          el.innerText = i18n[lang][key];
+        }
+      });
+
+      renderActiveStage();
+      renderNav();
+    }
+
+    // 2. Comprehensive 8 Life Stages with Spiritual Core
+    const STAGES_MASTER = [
+  {
+    "id": 1,
+    "stageNumber": 1,
+    "title": "مرحلة الفطرة والسكينة (الرضاعة والمهد)",
+    "title_en": "Pure Fitrah & Serenity (0 - 3 Years)",
+    "title_fr": "Pure Fitrah & Sérénité (0 - 3 Ans)",
+    "ageRange": "من الولادة حتى 3 سنوات",
+    "minAge": 0,
+    "maxAge": 3,
+    "psychoState": "النفس الفطرية النقية — الرضيع يبحث عن الأمان المطلق والشعور بأنه محبوب ومحمي في هذا العالم الجديد.",
+    "faithMedicine": "غمر الطفل برحمة الله من خلال حنان الوالدين؛ فالطفل يتعرف على رحمة الخالق أولاً من خلال حنان الأم وعطف الأب.",
+    "vision": "بيت يعبق برائحة المسك ونور القرآن، أول ما يطرق سمع الطفل كلمة «الله أكبر» ورؤية والديه ساجدين لله.",
+    "mission": "تربية سمع الطفل وقلبه على حب الله والسكينة، وتفادي الصراخ والغضب حتى تنشأ نفسه مطمئنة سوية.",
+    "propheticStory": "«كان النبي ﷺ يصلي وهو حاملٌ أُمامة بنت زينب، فإذا سجد وضعها وإذا قام حملها» — أعظم قدوة في الرحمة بالصغار حتى في أقدس لحظات الصلاة.",
+    "heartTouch": "لماذا يحب الصغير ربه؟ لأن الله وضع له حليباً دافئاً في صدر أمه يناسب أسنانه الضعيفة ومعدته الصغيرة، وسخر له من يخدمه ويحبه بلا مقابل!",
+    "dailyHabit": "قراءة المعوذتين والفاتحة ومسح جسد الطفل بها قبل النوم للنوم الهادئ والبركة.",
+    "duaaOfStage": "«أُعِيذُكَ بِكَلِمَاتِ اللَّهِ التَّامَّةِ، مِنْ كُلِّ شَيْطَانٍ وَهَامَّةٍ، وَمِنْ كُلِّ عَيْنٍ لَامَّةٍ»",
+    "specialDeed": "صدقة خفية شكرًا لله على نعمة الذرية وسلامة البدن.",
+    "goals": [
+      {
+        "id": "1-1",
+        "title": "ترديد اسم الله والحمد لله مع نطق الطفل الأول ليكون أول كلامه أطيب الكلام وأعظمه",
+        "xp": 50
+      },
+      {
+        "id": "1-2",
+        "title": "إحاطة الرضيع بالحنان والقبلات كما كان يفعل النبي ﷺ مع الحسن والحسين تطييباً لنفسه",
+        "xp": 50
+      },
+      {
+        "id": "1-3",
+        "title": "تشغيل ترتيل القرآن الكريم الهادئ عند نوم الطفل لملء غرفته بالسكينة وطرد الكوابيس",
+        "xp": 50
+      },
+      {
+        "id": "1-4",
+        "title": "تعويد الطفل على رؤية سجادة الصلاة والوالدين ساجدين ليألف السجود لله حباً وفطرة",
+        "xp": 50
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "stageNumber": 2,
+    "title": "مرحلة البراعم والشغف (روضة البراءة والجمال)",
+    "title_en": "Blossoming Faith & Wonder (3 - 6 Years)",
+    "title_fr": "L'Éveil de la Foi (3 - 6 Ans)",
+    "ageRange": "من 3 إلى 6 سنوات",
+    "minAge": 3,
+    "maxAge": 6,
+    "psychoState": "النفس المستكشفة الشغوفة — خيال واسع، حب تقليد الكبار، التعلم باللعب والحواس، والبحث الدائم عن التشجيع والمكافأة.",
+    "faithMedicine": "تقديم الإسلام كدين جمال وفرح وعطاء: الله خلق الطيور الجميلة، والفراشات، والنجوم اللامعة في السماء لأنه يحبنا.",
+    "vision": "طفل مبتسم ومؤدب، يرى في النبي محمد ﷺ بطله المحبوب وقدوته الأولى في اللطف والصدق وإطعام الطيور والقطط.",
+    "mission": "غرس الآداب النبوية الراقية بالحب والقدوة والقصة المصورة دون ترهيب أو تخويف بالنار.",
+    "propheticStory": "«يا أبا عُمَيْر، ما فعل النُّغَيْر؟» — كان النبي ﷺ أعظم قائد في التاريخ، ومع ذلك ينزل لمستوى طفل صغير يواسيه بلطف في عصفوره الصغير الذي مات.",
+    "heartTouch": "لماذا نعشق ديننا؟ لأن الابتسامة فيه عبادة وصدقة، وإماطة الأذى عن الطريق عبادة، والرحمة بالحيوان تدخل الجنة!",
+    "dailyHabit": "قول «بسم الله الرحمن الرحيم» قبل أي عمل، و«الحمد لله» بعده، وحفظ حديث نبوي قصير كل أسبوع.",
+    "duaaOfStage": "«اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا»",
+    "specialDeed": "وضع ماء وحبوب للطيور والقطط بالشارع ليتعلم الطفل الرحمة بمخلوقات الله.",
+    "goals": [
+      {
+        "id": "2-1",
+        "title": "حفظ قصار السور المبهجة (الفاتحة، الإخلاص، الفلق، الناس، الكوثر) مع فهم معانيها المصورة",
+        "xp": 50
+      },
+      {
+        "id": "2-2",
+        "title": "تعلم التسمية باليمين، وحمد الله بعد الطعام، والحرص التام على نظافة الأسنان واليدين",
+        "xp": 50
+      },
+      {
+        "id": "2-3",
+        "title": "مشاركة الطعام والألعاب مع الإخوة تيمناً بـ «لا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ»",
+        "xp": 50
+      },
+      {
+        "id": "2-4",
+        "title": "الوقوف بجانب الوالدين في الصلاة بحب وسرور وارتداء لباس نظيف مبهج وقت الصلاة",
+        "xp": 50
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "stageNumber": 3,
+    "title": "مرحلة التمييز والشجاعة (الطفولة والابتدائية)",
+    "title_en": "Discernment & Courage (6 - 12 Years)",
+    "title_fr": "Discernement & Courage (6 - 12 Ans)",
+    "ageRange": "من 6 إلى 12 سنة",
+    "minAge": 6,
+    "maxAge": 12,
+    "psychoState": "النفس المميزة الساعية للإنجاز — حب التنافس، الشعور بالمسؤولية، بداية تشكل الضمير الأخلاقي، وحب الانتماء للأبطال.",
+    "faithMedicine": "ربط العبادات بالشرف والرجولة والأنوثة الصالحة؛ الصلاة موعد سرّي مع رب العزة، وقراءة القرآن وسام فخر يباهي به أصحابه.",
+    "vision": "طفل شجاع صادق، محافظ على وضوئه وصلاته الخمس، بار بوالديه، متفوق في دراسته بنية خدمة دينه وأمته.",
+    "mission": "بناء عادة الصلاة الراسخة بحب وشوق ومرافقة المسجد، وإتقان الوضوء النبوي الصحيح بماء قليل دون إسراف.",
+    "propheticStory": "«احفظ الله يحفظك، احفظ الله تجده تجاهك، إذا سألت فاسأل الله، وإذا استعنت فاستعن بالله» — وصية النبي الخالدة لابن عباس وهو غلام.",
+    "heartTouch": "سر حلاوة الصلاة: حين تضع جبهتك على الأرض في السجدة، تسقط ذنوبك وتكون في أقرب مكان إلى الله الذي يملك الدنيا والآخرة!",
+    "dailyHabit": "قراءة صفحتين من القرآن الكريم بعد الفجر، وأذكار الخروج من المنزل ودخول المسجد.",
+    "duaaOfStage": "«رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي ۚ رَبَّنَا وَتَقَبَّلْ دُعَاءِ»",
+    "specialDeed": "مساعدة الوالدة في البيت أو خدمة الوالد قبل أن يطلب ذلك، احتساباً للبر.",
+    "goals": [
+      {
+        "id": "3-1",
+        "title": "المواظبة على الصلوات الخمس في أوقاتها بفرح وشوق، مع صلاة الجماعة في المسجد ما تيسر",
+        "xp": 50
+      },
+      {
+        "id": "3-2",
+        "title": "إتقان الوضوء النبوي الكامل مع تعلم أسرار الطهارة وتجنب الإسراف في الماء",
+        "xp": 50
+      },
+      {
+        "id": "3-3",
+        "title": "حفظ جزء عمّ مع تدبر القصص القرآنية العظيمة (أصحاب الكهف، نوح، إبراهيم الخليل)",
+        "xp": 50
+      },
+      {
+        "id": "3-4",
+        "title": "الصدق المطلق في الكلام والأمانة في المدرسة والامتحانات واجتناب الغش نهائياً",
+        "xp": 50
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "stageNumber": 4,
+    "title": "مرحلة الفتوة والاعتزاز بالهوية (المراهقة)",
+    "title_en": "Chivalry & Identity (12 - 18 Years)",
+    "title_fr": "Pureté & Fierté Musulmane (12 - 18 Ans)",
+    "ageRange": "من 12 إلى 18 سنة",
+    "minAge": 12,
+    "maxAge": 18,
+    "psychoState": "النفس الثائرة الباحثة عن الهوية — صراع بين الشهوات وضغوط الأقران، الرغبة في إثبات الذات، والتأثر الشديد بالسوشيال ميديا.",
+    "faithMedicine": "العزة بالإسلام والترفع عن التفاهة؛ تقديم الدين كحصن رجولة وعفة نفس وكرامة وليس قيوداً خانقة.",
+    "vision": "شاب معتز بإسلامه، صاحب همة عالية، طاهر السريرة، يستحي من نظر الله إليه فلا يبارزه بالمعاصي في الخلوات.",
+    "mission": "حماية الجوارح والقلب من الشبهات والشهوات المحرمة، وبناء ثقة عقدية تحطم الأفكار الهدامة والمادية الزائفة.",
+    "propheticStory": "«شاب نشأ في عبادة الله» — في ظل عرش الرحمن يوم القيامة حين تدنو الشمس من الرؤوس، يقف الشاب العفيف الذي غلب شهوته لله!",
+    "heartTouch": "سر حلاوة الإيمان: أن تترك مقطعاً حراماً أو نظرة خبيثة في خلوتك وأنت قادر عليها، فيملأ الله صدرك نوراً وهيبة وانشراحاً لا يشعر به غيرك.",
+    "dailyHabit": "أذكار الصباح والمساء كاملة كدرع فولاذي، وغض البصر، وركعتا الوتر قبل النوم.",
+    "duaaOfStage": "«يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى»",
+    "specialDeed": "حذف حساب أو صفحة أو صديق سوء يسحبك إلى المعاصي أو الأفكار المسمومة لوجه الله.",
+    "goals": [
+      {
+        "id": "4-1",
+        "title": "المحافظة التامة على صلاة الفجر في وقتها، فهي صمام أمان اليوم وعلامة البراءة من النفاق",
+        "xp": 50
+      },
+      {
+        "id": "4-2",
+        "title": "عفة البصر والسمع واعتزال المواقع المحرمة، فإن زنا العين النظر وعاقبته قسوة القلب والهم",
+        "xp": 50
+      },
+      {
+        "id": "4-3",
+        "title": "مصاحبة الأخيار الناجحين الذين إذا نسيت الله ذكروك وإذا ذكرته أعانوك، ومفارقة جلساء السوء",
+        "xp": 50
+      },
+      {
+        "id": "4-4",
+        "title": "بناء العقل بالقراءة الهادفة والجسد بالرياضة فإن «المؤمن القوي أحب إلى الله من المؤمن الضعيف»",
+        "xp": 50
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "stageNumber": 5,
+    "title": "مرحلة الريادة والتمكين (الشباب والجامعة)",
+    "title_en": "Empowerment & Pure Ambition (18 - 25 Years)",
+    "title_fr": "Leadership & Ambition Pure (18 - 25 Ans)",
+    "ageRange": "من 18 إلى 25 سنة",
+    "minAge": 18,
+    "maxAge": 25,
+    "psychoState": "النفس الطموحة القلقة على المستقبل — ضغوط التخرج، البحث عن الاستقلال المالي، والتطلع للزواج والاستقرار.",
+    "faithMedicine": "التوكل الحقيقي على الرزاق؛ اليقين بأن ما كتبه الله لك لن يأخذه غيرك، وأن البركة تأتي مع تقوى الله والمال الحلال.",
+    "vision": "شاب مسلم مبتكر ومتفوق عالمياً، ينظر إلى علمه ووظيفته كمنبر لإعزاز أمته وكفالة نفسه وأهله بالحلال النقي.",
+    "mission": "التفوق الأكاديمي والمهني، بناء الوعي المالي الحلال الخالي من الربا، والتطوع الفعال في خدمة الضعفاء والمساكين.",
+    "propheticStory": "«مَن بات كَالّاً مِن عملِ يده بات مغفوراً له» — كان الصحابة فرساناً بالليل تجاراً ومهنيين بالنهار، يعرقون في طلب الحلال ويسبحون الله في كل خطوة.",
+    "heartTouch": "لماذا نتمسك بالدين في العمل؟ لأن الدرهم الحلال يبارك الله فيه حتى يغنيك، والدرهم الحرام يمحق البركة ويجلب المرض والشقاء مهما كثر.",
+    "dailyHabit": "صلاة الضحى (ركعتين إلى 4 ركعات صدقة عن مفاصل البدن)، واستغفار 100 مرة لفتح أبواب الفرج.",
+    "duaaOfStage": "«اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ»",
+    "specialDeed": "اقتطاع أول نسبة من راتبك أو دخلك كصدقة سرية، فالصدقة تدفع البلاء وتضاعف الرزق.",
+    "goals": [
+      {
+        "id": "5-1",
+        "title": "إتقان التخصص والعمل بأعلى درجات الأمانة الاحترافية، فالمسلم لا يغش ولا يسرق الوقت",
+        "xp": 50
+      },
+      {
+        "id": "5-2",
+        "title": "التحري الشديد للحلال وتجنب المعاملات الربوية والشبهات المالية التي تغضب الله",
+        "xp": 50
+      },
+      {
+        "id": "5-3",
+        "title": "المحافظة على صلاة الوتر وقيام الليل ولو بركعتين خفيفتين ومناجاة الله وسؤاله التوفيق والعفة",
+        "xp": 50
+      },
+      {
+        "id": "5-4",
+        "title": "الإعداد الجاد للزواج الصالح وبناء النفس روحياً ونفسياً ومادياً لتأسيس بيت مسلم قوي",
+        "xp": 50
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "stageNumber": 6,
+    "title": "مرحلة السكن والمودة (النضج وبناء الأسرة)",
+    "title_en": "Sacred Bond & Raising Believers (25 - 40 Years)",
+    "title_fr": "Foyer d'Amour & Éducation (25 - 40 Ans)",
+    "ageRange": "من 25 إلى 40 سنة",
+    "minAge": 25,
+    "maxAge": 40,
+    "psychoState": "النفس الحاملة للمسؤوليات — ضغوط إعالة البيت وتربية الأبناء، تحديات العلاقات الزوجية، وضيق الوقت بين العمل والأسرة.",
+    "faithMedicine": "تحويل كل تفاصيل الحياة اليومية إلى عبادة؛ ابتسامتك لزوجتك صدقة، واللقمة تضعها في فمها لك فيها أجر، وصبرك على أطفالك جهاد في سبيل الله.",
+    "vision": "بيت مسلم يسوده الهدوء والمودة والرحمة، لا يدخله حرام، ولا يرتفع فيه صوت بالسباب، تتلى فيه آيات الله كل صباح ومساء.",
+    "mission": "تنشئة أبناء يعتزون بربهم ونبيهم، وحسن المعاشرة والتغافل الذكي عن الهفوات اليومية لبناء أسرة حديدية التماسك.",
+    "propheticStory": "«كان النبي ﷺ في مهنة أهله، فإذا حضرت الصلاة خرج إلى الصلاة» — خير الناس لأهله، يخصف نعله ويرقع ثوبه ويمازح عائشة ويسابقها بالحب.",
+    "heartTouch": "سر سعادة البيت: البيت الذي تقرأ فيه سورة البقرة وتصلى فيه النوافل تهجره الشياطين وتتنزل عليه الملائكة وتعم فيه البركة والسكينة.",
+    "dailyHabit": "جلسة عائلية أسبوعية لمدارسة حديث نبوي شريف، وصلاة ركعتين جماعة مع العائلة.",
+    "duaaOfStage": "«رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا»",
+    "specialDeed": "إدخال سرور عظيم ومفاجأة هدية للزوج/الزوجة والأولاد بنية التقرب لله وإشاعة المودة.",
+    "goals": [
+      {
+        "id": "6-1",
+        "title": "إقامة الصلاة في البيت جماعة مع الأسرة وتعويد الأبناء عليها بالحب والمكافأة التشجيعية",
+        "xp": 50
+      },
+      {
+        "id": "6-2",
+        "title": "حسن العشرة والتغافل عن الزلات وتجنب الغضب والصراخ أمام الأبناء حفاظاً على سلامتهم النفسية",
+        "xp": 50
+      },
+      {
+        "id": "6-3",
+        "title": "كفالة أيتام أو المساهمة في سقي الماء وإطعام الطعام ليدفع الله عن بيتك الأمراض والمصائب",
+        "xp": 50
+      },
+      {
+        "id": "6-4",
+        "title": "المحافظة الصارمة على بر الوالدين بعد الزواج وصلة الأرحام وتطييب خواطرهم وزيارتهم الدورية",
+        "xp": 50
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "stageNumber": 7,
+    "title": "مرحلة الحكمة والأثر الباقي (منتصف العمر)",
+    "title_en": "Legacy, Wisdom & Everlasting Deeds (40 - 60 Years)",
+    "title_fr": "Sagesse & Œuvres Perpétuelles (40 - 60 Ans)",
+    "ageRange": "من 40 إلى 60 سنة",
+    "minAge": 40,
+    "maxAge": 60,
+    "psychoState": "النفس المتأملة الحكيمة — نضج التجربة، إدراك سرعة انقضاء العمر، التفكير العميق في الأثر الذي سيبقى بعد الممات، والزهد في صغائر الخلافات.",
+    "faithMedicine": "تجديد التوبة الصادقة وتصفية القلب من كل غل؛ الانشغال بصناعة الصدقات الجارية ومشاريع الخير التي لا ينقطع أجرها.",
+    "vision": "مسيرة مباركة تثمر علماً نافعاً وأوقافاً خيرية وتوجيهاً رحيماً للشباب الصاعد، واستعداداً مستمراً للقاء الله بقلب سليم.",
+    "mission": "نقل الخبرات، إصلاح ذات البين، رعاية كبار السن، والتفرغ للأعمال التطوعية التي تعمر المساجد وتنفع الأمة.",
+    "propheticStory": "«إذا مات ابن آدم انقطع عمله إلا من ثلاث: صدقة جارية، أو علم يُنتفع به، أو ولد صالح يدعو له» — استثمارك الحقيقي الذي يسافر معك لقبرك.",
+    "heartTouch": "لماذا يستريح القلب في الأربعين؟ لأنك رأيت الدنيا كيف تقبل وتدبر، وتيقنت أن الفائز الحقيقي هو من عبرها بقلب سليم ولسان رطب بذكر الله.",
+    "dailyHabit": "قراءة جزء كامل من القرآن يومياً، وسيد الاستغفار صباحاً ومساءً، وصيام الأيام البيض (13 و14 و15).",
+    "duaaOfStage": "«رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ وَعَلَىٰ وَالِدَيَّ وَأَنْ أَعْمَلَ صَالِحًا تَرْضَاهُ وَأَصْلِحْ لِي فِي ذُرِّيَّتِي ۖ إِنِّي تُبْتُ إِلَيْكَ وَإِنِّي مِنَ الْمُسْلِمِينَ»",
+    "specialDeed": "تأسيس صدقة جارية (مصحف، بئر ماء، مساعدة طالب علم فقير، أو وقف خيري).",
+    "goals": [
+      {
+        "id": "7-1",
+        "title": "تأسيس أو المشاركة في وقف خيري أو عمل صالح دائم يستمر عداد حسناته بعد وفاتك",
+        "xp": 50
+      },
+      {
+        "id": "7-2",
+        "title": "تصفية النفس من أي شحناء ومسامحة كل من أخطأ في حقك لوجه الله رجاء مغفرة ذنوبك",
+        "xp": 50
+      },
+      {
+        "id": "7-3",
+        "title": "ملازمة صلاة الجماعة في المسجد وتبكير الحضور قبل الأذان للجلوس في رياض الجنة",
+        "xp": 50
+      },
+      {
+        "id": "7-4",
+        "title": "تدريب الأجيال الجديدة ونقل خبراتك المهنية والحياتية إليهم بحب وإخلاص وتواضع",
+        "xp": 50
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "stageNumber": 8,
+    "title": "مرحلة السكينة والشوق للجنة (الشيخوخة وحسن الختام)",
+    "title_en": "Serenity & Longing for Jannah (60+ Years)",
+    "title_fr": "Paix Intérieure & Paradis Éternel (60+ Ans)",
+    "ageRange": "من 60 سنة فما فوق",
+    "minAge": 60,
+    "maxAge": 120,
+    "psychoState": "النفس المطمئنة المودعة — زهد تام في زخرف الدنيا، شوق عظيم لمغفرة الله ولقائه، الرغبة في الأنس بالقرآن والتواصل الدافئ مع الأحفاد.",
+    "faithMedicine": "حسن الظن المطلق برحمة الله ومغفرته؛ استشعار أن الله غفور شكور كريم، وما خلقه ليعذبه، بل ليرحمه ويدخله جنة عرضها السماوات والأرض.",
+    "vision": "وجه مستبشر يفيض نوراً وبهاءً من كثرة الوضوء والسجود، ولسان لا يفتر ثانية واحدة عن التهليل والاستغفار والصلاة على النبي ﷺ.",
+    "mission": "نشر الطمأنينة وإلهام الأسرة والأحفاد بحكايات الصبر والإيمان، وتوثيق الوصية الشرعية وتبرئة الذمة من كل حق.",
+    "propheticStory": "«من أحب لقاء الله أحب الله لقاءه» — الموت للمؤمن ليس فناءً، بل هو استراحة من كبد الدنيا والتحاق بالرفيق الأعلى مع النبيين والصديقين والشهداء.",
+    "heartTouch": "أعظم حب في الوجود: أن تتيقن أن كل سجدة سجدتها، وكل دمعة ذرفتها في خلوتك، وكل صدقة أخفيتها، محفوظة لك عند رب لا يظلم مثقال ذرة، ينتظرك بها نعيم لا عين رأت ولا أذن سمعت!",
+    "dailyHabit": "كثرة قول «لا إله إلا الله وحده لا شريك له»، «سبحان الله وبحمده سبحان الله العظيم»، والابتسامة ومداعبة الأحفاد.",
+    "duaaOfStage": "«اللَّهُمَّ اخْتِمْ بِالصَّالِحَاتِ أَعْمَالَنَا، وَاجْعَلْ خَيْرَ أَيَّامِنَا يَوْمَ نَلْقَاكَ، وَأَسْأَلُكَ لَذَّةَ النَّظَرِ إِلَى وَجْهِكَ الْكَرِيمِ، وَالشَّوْقَ إِلَى لِقَائِكَ فِي غَيْرِ ضَرَّاءَ مُضِرَّةٍ، وَلَا فِتْنَةٍ مُضِلَّةٍ»",
+    "specialDeed": "كتابة الوصية الشرعية والوصية بالأخلاق وحفظ الصلاة لجميع الأبناء والأحفاد.",
+    "goals": [
+      {
+        "id": "8-1",
+        "title": "المداومة على الصف الأول وتكبيرة الإحرام، وقضاء ما بين الأذان والإقامة في الدعاء المستجاب",
+        "xp": 50
+      },
+      {
+        "id": "8-2",
+        "title": "إلهام الأحفاد بحب النبي ﷺ وقراءة القرآن عليهم ومداعبتهم برفق كما كان يفعل المصطفى",
+        "xp": 50
+      },
+      {
+        "id": "8-3",
+        "title": "كتابة الوصية وتوزيع الحقوق الشرعية بلا ظلم وتبرئة الذمة من أي ديون أو مظالم للخلق",
+        "xp": 50
+      },
+      {
+        "id": "8-4",
+        "title": "الاستبشار الدائم برحمة الله الواسعة وحسن الظن التام به والشوق للقائه ورؤية وجهه الكريم في الجنة",
+        "xp": 50
+      }
+    ]
+  }
+];
+
+    // Web Audio Synthesizer for Tasbeeh Click & Haptic Feedback
+    let audioCtx = null;
+    function playTasbeehClickSound() {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.05);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.05);
+      } catch(e) {}
+      if (navigator.vibrate) {
+        navigator.vibrate(25);
+      }
+    }
+
+
+    // WhatsApp Direct Report Sender
+    function sendWhatsAppReport(studentName, stageTitle, progressPct, tasbeehTotal) {
+      const msg = `السلام عليكم ورحمة الله وبركاته 🌿\n\nنشارككم التقرير التربوي والإيماني للطالب البطل: *${studentName}*\nالمحطة الحالية: *${stageTitle}*\nنسبة إنجاز الأهداف: *${progressPct}* 🌟\nرصيد التسبيح والأذكار: *${tasbeehTotal} تسبيحة* 📿\n\nوفقه الله ورعاه وبارك في تربيتكم الكريمة!\n— مرسل عبر منظومة رحلة العمر وقبس الإيمان`;
+      const url = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    }
+
+
+    
+    const FIQH_DATA_BY_STAGE = {
+      1: {
+        badge: "فقه المواليد والعقيقة (من الولادة حتى 3 سنوات)",
+        title: "أحكام المولود واستقبال الفطرة",
+        desc: "الأحكام الشرعية المستحبة والواجبة لاستقبال النعمة الجديدة وتطهير بيئته.",
+        cards: [
+          {
+            title: "الأذان والعقيقة والتحنيك",
+            icon: "baby",
+            color: "blue",
+            text: "يُسن التأذين في أذن المولود اليمنى ليكون أول ما يسمعه نداء التوحيد، وذبح العقيقة شكرًا لله وفكاكًا لرهان المولود في اليوم السابع، وتسميته باسم حسن كريم.",
+            points: ["الأذان في الأذن اليمنى لغرس التوحيد", "العقيقة: شاتان عن الغلام وشاة عن البنت", "حلق الرأس والتصدق بوزنه فضة إن تيسر"]
+          },
+          {
+            title: "طهارة ثياب وأبدان الرضع",
+            icon: "droplet",
+            color: "emerald",
+            text: "يسر الشريعة في تطهير بول الرضيع الذي لم يطعم الطعام برشه ونضحه، وغسل ثياب الطفل بلطف دون وسوسة، واستشعار أن رعاية نظافته عبادة تؤجر عليها الأم والأب.",
+            points: ["نضح بول الصبي الذي لم يأكل غير اللبن", "غسل بول الجارية بالماء كالمعتاد", "طهارة قيء الرضيع اليسير رحمة وتيسيراً"]
+          },
+          {
+            title: "حقوق الرضاعة والحضانة",
+            icon: "heart",
+            color: "amber",
+            text: "الرضاعة حولين كاملين حق للطفل على والديه، وتوفير الأمان النفسي واجب شرعي يُسأل عنه العبد أمام الله؛ فالإهمال والتعنيف إثم عظيم.",
+            points: ["«وَالْوَالِدَاتُ يُرْضِعْنَ أَوْلَادَهُنَّ حَوْلَيْنِ كَامِلَيْنِ»", "الحضانة أمانة لحفظ نفس الصغير ودينه", "النفقة الواجبة على الأب بالمعروف"]
+          }
+        ]
+      },
+      2: {
+        badge: "فقه البراعم والآداب (من 3 إلى 6 سنوات)",
+        title: "فقه الآداب النبوية والتطبيع على العبادة",
+        desc: "كيف نعلّم البراعم محبة الدين والآداب الرفيعة بالحب والقدوة.",
+        cards: [
+          {
+            title: "آداب الطعام والشراب",
+            icon: "utensils",
+            color: "amber",
+            text: "غرس التسمية بالله في أول الطعام باليمين والأكل مما يليه، وحمد الله في الختام، والنهي اللطيف عن عيب الطعام أو النفخ في الإناء الساخن.",
+            points: ["قول «بسم الله» باليد اليمنى", "الأكل مما يلي الطفل برفق", "حمد الله وشكر النعمة بعد الفراغ"]
+          },
+          {
+            title: "الاستئذان وإفشاء السلام",
+            icon: "door-open",
+            color: "blue",
+            text: "تعليم الصغير الاستئذان ثلاثاً قبل دخول غرف الوالدين في الأوقات الثلاثة، وإلقاء السلام بابتسامة: «السلام عليكم ورحمة الله» ليزرع المحبة في قلبه.",
+            points: ["الاستئذان قبل الدخول وطرق الباب بلطف", "إفشاء السلام ورد التحية بأحسن منها", "الاستئذان عند الرغبة في أخذ حاجة الغير"]
+          },
+          {
+            title: "الصلاة بالمحاكاة وحب المسجد",
+            icon: "sparkles",
+            color: "emerald",
+            text: "عدم إجبار الطفل في هذا السن، بل تشجيعه على الوقوف بجانب والديه، ومكافأته بهدية حلوى كلما قلد السجود، ليرتبط المسجد في ذاكرته بالفرح.",
+            points: ["الوقوف في الصلاة برغبة وفرح", "لبس ثياب نظيفة وجميلة وقت الصلاة", "تحبيب بيوت الله دون صراخ أو توبيخ"]
+          }
+        ]
+      },
+      3: {
+        badge: "فقه التمييز والطهارة والصلاة (من 6 إلى 12 سنة)",
+        title: "أركان الصلاة والوضوء والصيام",
+        desc: "الأحكام الفقهية الأساسية التي لا يسع الناشئ المسلم جهلها.",
+        cards: [
+          {
+            title: "صفة الوضوء وشروطه ونواقضه",
+            icon: "droplet",
+            color: "blue",
+            text: "تعلم فرائض الوضوء الست وسننه النبوية، وكيفية إسباغ الوضوء على المكاره، والوعي بنواقض الوضوء (الريح، البول، النوم المستغرق).",
+            points: ["غسل الوجه واليدين ومسح الرأس وغسل الرجلين", "المضمضة والاستنشاق والترتيب والموالاة", "حرمة الإسراف في الماء ولو كنت على نهر جارٍ"]
+          },
+          {
+            title: "أركان الصلاة وسننها ومبطلاتها",
+            icon: "compass",
+            color: "emerald",
+            text: "معرفة الفرق بين الركن (كتكبيرة الإحرام والفاتحة والركوع والسجود والركوع) الذي تبطل الصلاة بتركه، والسنن التي تجبر بسجود السهو، ومبطلات الصلاة كالكلام والضحك.",
+            points: ["الطمأنينة في الركوع والسجود ركن لا تصح الصلاة بدونه", "قراءة الفاتحة ركن في كل ركعة", "ستر العورة واستقبال القبلة وطهارة المكان"]
+          },
+          {
+            title: "فقه الصيام التدرجي وأخلاق المسجد",
+            icon: "moon",
+            color: "amber",
+            text: "التدريب على صيام جزء من النهار في رمضان حتى صيام اليوم كاملاً عند القدرة، وآداب حضور صلاة الجماعة والجمعة، وعدم إيذاء المصلين أو الجري بالمسجد.",
+            points: ["نية الصيام قبل الفجر في الفرض", "آداب المسجد: تحية المسجد وخفض الصوت", "تعجيل الفطور وتأخير السحور كما أمر النبي ﷺ"]
+          }
+        ]
+      },
+      4: {
+        badge: "فقه البلوغ والعفة والطهارة الكبرى (من 12 إلى 18 سنة)",
+        title: "أحكام التكليف، الغسل، والعفة",
+        desc: "فقه النقاء والطهارة الشخصية وحماية الجوارح عند بلوغ سن المسؤولية أمام الله.",
+        cards: [
+          {
+            title: "علامات البلوغ وموجبات الغسل",
+            icon: "shield-alert",
+            color: "blue",
+            text: "معرفة متى يصبح الشاب أو الفتاة مكلفاً تجري عليه الأقلام (الاحتلام، الإنبات، بلوغ 15 سنة، والحيض للبنت)، وكيفية الغسل الكامل من الجنابة والحيض لرفع الحدث الأكبر.",
+            points: ["صفة غسل الجنابة: النية ثم الوضوء ثم تعميم الجسد بالماء", "حرمة الصلاة والصيام ومس المصحف للمحدث حدثاً أكبر حتى يغتسل", "الأحكام الشرعية الخاصة بالحيض والاستحاضة للفتيات"]
+          },
+          {
+            title: "فقه العفة وغض البصر وستر العورة",
+            icon: "eye-off",
+            color: "emerald",
+            text: "أحكام حدود العورة للرجل وللمرأة، وحرمة الخلوة والمصافحة المحرمة، وأحكام النظر وتجنب إطلاق البصر في المحرمات وعقوبة انتهاك حرمات الله في الخلوات.",
+            points: ["«قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ» فرض عين", "حدود عورة الرجل من السرة إلى الركبة", "الحجاب الشرعي الساتر للمرأة حماية وتكريم"]
+          },
+          {
+            title: "فقه السنن الرواتب وصلاة الوتر",
+            icon: "sun",
+            color: "amber",
+            text: "المحافظة على الـ 12 ركعة راتبة يومياً لبناء بيت في الجنة (2 قبل الفجر، 4 قبل الظهر و2 بعده، 2 بعد المغرب، 2 بعد العشاء)، وأحكام صلاة الوتر وركعتي الفجر.",
+            points: ["السنن الرواتب تجبر أي نقص في الفرائض يوم الحساب", "ركعتا سنة الفجر خير من الدنيا وما فيها", "أقل الوتر ركعة وأكثره إحدى عشرة ركعة"]
+          }
+        ]
+      },
+      5: {
+        badge: "فقه المعاملات والمال الحلال والزواج (من 18 إلى 25 سنة)",
+        title: "فقه سوق العمل، العقود، وبناء البيت الصالح",
+        desc: "أحكام الكسب الحلال، وتجنب الشبهات المالية، وضوابط الخطبة الشرعية.",
+        cards: [
+          {
+            title: "فقه البيوع وتجنب الربا والغش",
+            icon: "scale",
+            color: "emerald",
+            text: "الضوابط الشرعية للمعاملات المالية الحديثة، الفرق بين البيع الحلال والربا المحرم، وحرمة أكل أموال الناس بالباطل أو بيع ما لا تملك، وبركة الصدق في التجارة.",
+            points: ["حرمة فوائد البنوك الربوية والبدائل الإسلامية", "حرمة الغش وتزييف السلع وإخفاء العيوب", "شروط صحة عقد البيع: التراضي والإيجاب والقبول والقدرة على التسليم"]
+          },
+          {
+            title: "أحكام الخطبة وضوابط العلاقة قبل الزواج",
+            icon: "users",
+            color: "blue",
+            text: "الخطبة وعد بالزواج وليست عقداً؛ تظل المخطوبة أجنبية لا تحل له الخلوة بها ولا التلامس، وضوابط الرؤية الشرعية، واختيار شريك الحياة على أساس الدين والخلق.",
+            points: ["«تُنكَحُ المرأةُ لأربع... فاظفر بذات الدين تربت يداك»", "الرؤية الشرعية حق للخاطب بحضور محرم", "حرمة المحادثات العاطفية المحرمة قبل عقد القران"]
+          },
+          {
+            title: "أمانة الوظيفة وساعات العمل",
+            icon: "briefcase",
+            color: "amber",
+            text: "فقه الإجارة والعمل؛ أخذ الراتب كاملاً يوجب العمل بالوقت كاملاً بإتقان، وحرمة الرشوة وقبول الهدايا الوظيفية التي تُعد غلولاً وسحتاً.",
+            points: ["الغياب بغير عذر والتكاسل ينقص بركة الراتب", "«هدايا العمال غلول» — حرمة الرشوة تحت مسميات الهدايا", "إتقان العمل أمانة يسأل عنها العبد يوم القيامة"]
+          }
+        ]
+      },
+      6: {
+        badge: "فقه الأسرة والزكاة والتربية (من 25 إلى 40 سنة)",
+        title: "حقوق الزوجين، حساب الزكاة، وأحكام النفقة",
+        desc: "الأحكام الفقهية لضمان استقرار البيت المسلم وأداء الحقوق المالية للفقراء.",
+        cards: [
+          {
+            title: "حقوق الزوج والزوجة والنفقة الواجبة",
+            icon: "home",
+            color: "amber",
+            text: "حقوق الزوجة في المهر، والمسكن المستقل اللائق، والنفقة بالمعروف، وحق الزوج في الطاعة بالمعروف وحفظ غيبته وماله وأسراره، وآداب حل الخلافات الأسرية بالمعروف.",
+            points: ["النفقة على الزوجة والأبناء واجبة بحسب استطاعة الزوج", "حرمة النشوز والظلم والإيذاء اللفظي أو البدني", "التشاور وحرمة إفشاء أسرار الفراش والحياة الخاصة"]
+          },
+          {
+            title: "أحكام زكاة المال وعروض التجارة",
+            icon: "coins",
+            color: "emerald",
+            text: "كيفية حساب زكاة المال إذا بلغ النصاب (ما يعادل 85 غراماً من الذهب عيار 24) وحال عليه الحول الهجري، بنسبة 2.5%، ومصارف الزكاة الثمانية المستحقة.",
+            points: ["نصاب الزكاة وحولان الحول شرطان أساسيان", "حساب عروض التجارة بسعر السوق وقت إخراج الزكاة", "حرمة إعطاء الزكاة لمن تلزمك نفقته كالأب والأم والزوجة"]
+          },
+          {
+            title: "فقه الأضحية والعقيقة وتربية الأبناء",
+            icon: "heart-handshake",
+            color: "blue",
+            text: "شروط الأضحية الشرعية وسنن ذبحها ووقت إجزائها، ومسؤولية الأب والأم عن تعليم الأبناء الصلاة ومراقبة سلوكهم وأخلاقهم: «كلكم راعٍ وكلكم مسؤول عن رعيته».",
+            points: ["سلامة الأضحية من العيوب وسنّها المعتبر شرعاً", "توزيع الأضحية: أكل وادخار وصدقة وإهداء", "أمر الأبناء بالصلاة عند سبع والتأكيد عليها عند عشر"]
+          }
+        ]
+      },
+      7: {
+        badge: "فقه الحج والعمرة والوصية والوقف (من 40 إلى 60 سنة)",
+        title: "مناسك الحج، الأوقاف، والأثر الباقي",
+        desc: "فقه أعظم رحلة في العمر، وكيف تبني وقفاً وصدقة جارية بعد وفاتك.",
+        cards: [
+          {
+            title: "أركان الحج والعمرة وواجباتها",
+            icon: "landmark",
+            color: "emerald",
+            text: "أركان الحج الأربعة (الإحرام، الوقوف بعرفة، طواف الإفاضة، والسعي بين الصفا والمروة)، والفرق بين الركن والواجب الذي يجبر بدم، ومحظورات الإحرام.",
+            points: ["«الحج عرفة» — فوات عرفة يفوت به الحج", "محظورات الإحرام: الطيب، حلق الشعر، وقص الأظافر", "طواف الوداع واجب على غير الحائض والنفساء"]
+          },
+          {
+            title: "أحكام الوقف والصدقة الجارية",
+            icon: "building-2",
+            color: "blue",
+            text: "الوقف حبس الأصل وتسبيل المنفعة لوجه الله تعالى؛ شروط الوقف الصحيح، مصارف الأوقاف (مساجد، كفالة طلاب علم، آبار مياه، علاج مرضى فقراء).",
+            points: ["الوقف لا يباع ولا يوهب ولا يورث", "استمرار ثواب الوقف ما دامت منفعته قائمة", "جواز شرط الواقف ما لم يخالف الشريعة"]
+          },
+          {
+            title: "فقه الوصية والأيمان والنذور",
+            icon: "scroll",
+            color: "amber",
+            text: "حرمة الوصية لوارث، والحد الأقصى للوصية بالثلث لغير الورثة، وأحكام كفارة اليمين (إطعام 10 مساكين أو كسوتهم، فإن لم يجد فصيام 3 أيام).",
+            points: ["«لا وصية لوارث» ولا تجوز الوصية بأكثر من الثلث", "كفارة اليمين إطعام عشرة مساكين قبل اللجوء للصيام", "حرمة النذر المكروه والوفاء بنذر الطاعة إن نذر"]
+          }
+        ]
+      },
+      8: {
+        badge: "فقه أصحاب الأعذار والتداوي وحسن الختام (60 سنة فما فوق)",
+        title: "فقه الرخص، صلاة المريض، وتبرئة الذمة",
+        desc: "التيسير الإلهي الكامل لكبار السن وأصحاب الأعذار، والاستعداد لصفاء اللقاء.",
+        cards: [
+          {
+            title: "صلاة المريض والجمع والقصر",
+            icon: "heart-pulse",
+            color: "blue",
+            text: "يسر الإسلام العظيم: من عجز عن القيام صلى قاعداً، ومن عجز صلى على جنبه برأسه وإيمائه، وأحكام التيمم لمن يضره الماء أو عجز عن الوصول إليه، والجمع بين الصلاتين عند المشقة.",
+            points: ["«صلِّ قائماً، فإن لم تستطع فقاعداً، فإن لم تستطع فعلى جنب»", "التيمم بالتراب الطاهر ضربة واحدة للوجه واليدين عند العجز عن الماء", "الجمع بين الظهر والعصر، والمغرب والعشاء تقديماً أو تأخيراً لدفع الحرج"]
+          },
+          {
+            title: "فقه فدية الصيام لمن يشق عليه",
+            icon: "coffee",
+            color: "amber",
+            text: "الشيخ الكبير والمريض مرضاً مزمناً لا يرجى برؤه لا صيام عليهما، بل يطعمان عن كل يوم مسكيناً وجبة مشبعة أو نصف صاع من طعام، وسقوط القضاء لعدم الاستطاعة.",
+            points: ["«وَعَلَى الَّذِينَ يُطِيقُونَهُ فِدْيَةٌ طَعَامُ مِسْكِينٍ»", "إخراج الفدية طعاماً مطبوخاً أو حباً للفقراء", "لا يجوز تكليف النفس ما لا تطيق مما يضر بالصحة"]
+          },
+          {
+            title: "حقوق الميراث والوصية وتبرئة الذمم",
+            icon: "file-text",
+            color: "emerald",
+            text: "كتابة الوصية الشرعية المحكمة، رد الودائع والأمانات لأصحابها، طلب السماح من الأهل والأقارب، والاستغفار الدائم وحسن الظن التام برحمة الله التي وسعت كل شيء.",
+            points: ["تبرئة الذمة من الديون فورا فإن نفس المؤمن معلقة بدينه", "الميراث فريضة مقسمة من الله لا يجوز تعديها أو حرمان الإناث", "«أنا عند ظن عبدي بي، وأنا معه إذا ذكرني»"]
+          }
+        ]
+      }
+    };
+
+
+    function renderFiqhSection() {
+      const data = FIQH_DATA_BY_STAGE[currentStageId] || FIQH_DATA_BY_STAGE[1];
+      const stage = STAGES_MASTER.find(s => s.id === currentStageId) || STAGES_MASTER[0];
+
+      // Update Header
+      const badgeEl = document.querySelector('[data-i18n="fiqhBadge"]');
+      if (badgeEl) badgeEl.innerText = data.badge;
+
+      const headEl = document.querySelector('[data-i18n="fiqhHead"]');
+      if (headEl) headEl.innerText = data.title + ` — خاصة بـ (${stage.title})`;
+
+      const subEl = document.querySelector('[data-i18n="fiqhSub"]');
+      if (subEl) subEl.innerText = data.desc;
+
+      // Render Cards Container
+      const grid = document.querySelector('#section-fiqh .grid');
+      if (grid) {
+        grid.innerHTML = data.cards.map(c => `
+          <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+                <i data-lucide="${c.icon}" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-base font-bold text-white">${c.title}</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">${c.text}</p>
+            </div>
+            <ul class="text-xs text-slate-400 space-y-2 pt-3 border-t border-slate-800">
+              ${c.points.map(pt => `<li class="flex items-start gap-2"><span>✨</span><span class="text-slate-300">${pt}</span></li>`).join('')}
+            </ul>
+          </div>
+        `).join('');
+      }
+      lucide.createIcons();
+    }
+
+    
+    // 1. ALL 114 SURAHS DATA
+    const ALL_SURAHS_DATA = [{"id": 1, "name": "الفاتحة", "type": "مكية", "ayahs": 7, "juz": 1, "audioId": "001"}, {"id": 2, "name": "البقرة", "type": "مدنية", "ayahs": 286, "juz": 1, "audioId": "002"}, {"id": 3, "name": "آل عمران", "type": "مدنية", "ayahs": 200, "juz": 3, "audioId": "003"}, {"id": 4, "name": "النساء", "type": "مدنية", "ayahs": 176, "juz": 4, "audioId": "004"}, {"id": 5, "name": "المائدة", "type": "مدنية", "ayahs": 120, "juz": 6, "audioId": "005"}, {"id": 6, "name": "الأنعام", "type": "مكية", "ayahs": 165, "juz": 7, "audioId": "006"}, {"id": 7, "name": "الأعراف", "type": "مكية", "ayahs": 206, "juz": 8, "audioId": "007"}, {"id": 8, "name": "الأنفال", "type": "مدنية", "ayahs": 75, "juz": 9, "audioId": "008"}, {"id": 9, "name": "التوبة", "type": "مدنية", "ayahs": 129, "juz": 10, "audioId": "009"}, {"id": 10, "name": "يونس", "type": "مكية", "ayahs": 109, "juz": 11, "audioId": "010"}, {"id": 11, "name": "هود", "type": "مكية", "ayahs": 123, "juz": 11, "audioId": "011"}, {"id": 12, "name": "يوسف", "type": "مكية", "ayahs": 111, "juz": 12, "audioId": "012"}, {"id": 13, "name": "الرعد", "type": "مدنية", "ayahs": 43, "juz": 13, "audioId": "013"}, {"id": 14, "name": "إبراهيم", "type": "مكية", "ayahs": 52, "juz": 13, "audioId": "014"}, {"id": 15, "name": "الحجر", "type": "مكية", "ayahs": 99, "juz": 14, "audioId": "015"}, {"id": 16, "name": "النحل", "type": "مكية", "ayahs": 128, "juz": 14, "audioId": "016"}, {"id": 17, "name": "الإسراء", "type": "مكية", "ayahs": 111, "juz": 15, "audioId": "017"}, {"id": 18, "name": "الكهف", "type": "مكية", "ayahs": 110, "juz": 15, "audioId": "018"}, {"id": 19, "name": "مريم", "type": "مكية", "ayahs": 98, "juz": 16, "audioId": "019"}, {"id": 20, "name": "طه", "type": "مكية", "ayahs": 135, "juz": 16, "audioId": "020"}, {"id": 21, "name": "الأنبياء", "type": "مكية", "ayahs": 112, "juz": 17, "audioId": "021"}, {"id": 22, "name": "الحج", "type": "مدنية", "ayahs": 78, "juz": 17, "audioId": "022"}, {"id": 23, "name": "المؤمنون", "type": "مكية", "ayahs": 118, "juz": 18, "audioId": "023"}, {"id": 24, "name": "النور", "type": "مدنية", "ayahs": 64, "juz": 18, "audioId": "024"}, {"id": 25, "name": "الفرقان", "type": "مكية", "ayahs": 77, "juz": 18, "audioId": "025"}, {"id": 26, "name": "الشعراء", "type": "مكية", "ayahs": 227, "juz": 19, "audioId": "026"}, {"id": 27, "name": "النمل", "type": "مكية", "ayahs": 93, "juz": 19, "audioId": "027"}, {"id": 28, "name": "القصص", "type": "مكية", "ayahs": 88, "juz": 20, "audioId": "028"}, {"id": 29, "name": "العنكبوت", "type": "مكية", "ayahs": 69, "juz": 20, "audioId": "029"}, {"id": 30, "name": "الروم", "type": "مكية", "ayahs": 60, "juz": 21, "audioId": "030"}, {"id": 31, "name": "لقمان", "type": "مكية", "ayahs": 34, "juz": 21, "audioId": "031"}, {"id": 32, "name": "السجدة", "type": "مكية", "ayahs": 30, "juz": 21, "audioId": "032"}, {"id": 33, "name": "الأحزاب", "type": "مدنية", "ayahs": 73, "juz": 21, "audioId": "033"}, {"id": 34, "name": "سبأ", "type": "مكية", "ayahs": 54, "juz": 22, "audioId": "034"}, {"id": 35, "name": "فاطر", "type": "مكية", "ayahs": 45, "juz": 22, "audioId": "035"}, {"id": 36, "name": "يس", "type": "مكية", "ayahs": 83, "juz": 22, "audioId": "036"}, {"id": 37, "name": "الصافات", "type": "مكية", "ayahs": 182, "juz": 23, "audioId": "037"}, {"id": 38, "name": "ص", "type": "مكية", "ayahs": 88, "juz": 23, "audioId": "038"}, {"id": 39, "name": "الزمر", "type": "مكية", "ayahs": 75, "juz": 23, "audioId": "039"}, {"id": 40, "name": "غافر", "type": "مكية", "ayahs": 85, "juz": 24, "audioId": "040"}, {"id": 41, "name": "فصلت", "type": "مكية", "ayahs": 54, "juz": 24, "audioId": "041"}, {"id": 42, "name": "الشورى", "type": "مكية", "ayahs": 53, "juz": 25, "audioId": "042"}, {"id": 43, "name": "الزخرف", "type": "مكية", "ayahs": 89, "juz": 25, "audioId": "043"}, {"id": 44, "name": "الدخان", "type": "مكية", "ayahs": 59, "juz": 25, "audioId": "044"}, {"id": 45, "name": "الجاثية", "type": "مكية", "ayahs": 37, "juz": 25, "audioId": "045"}, {"id": 46, "name": "الأحقاف", "type": "مكية", "ayahs": 35, "juz": 26, "audioId": "046"}, {"id": 47, "name": "محمد", "type": "مدنية", "ayahs": 38, "juz": 26, "audioId": "047"}, {"id": 48, "name": "الفتح", "type": "مدنية", "ayahs": 29, "juz": 26, "audioId": "048"}, {"id": 49, "name": "الحجرات", "type": "مدنية", "ayahs": 18, "juz": 26, "audioId": "049"}, {"id": 50, "name": "ق", "type": "مكية", "ayahs": 45, "juz": 26, "audioId": "050"}, {"id": 51, "name": "الذاريات", "type": "مكية", "ayahs": 60, "juz": 26, "audioId": "051"}, {"id": 52, "name": "الطور", "type": "مكية", "ayahs": 49, "juz": 27, "audioId": "052"}, {"id": 53, "name": "النجم", "type": "مكية", "ayahs": 62, "juz": 27, "audioId": "053"}, {"id": 54, "name": "القمر", "type": "مكية", "ayahs": 55, "juz": 27, "audioId": "054"}, {"id": 55, "name": "الرحمن", "type": "مدنية", "ayahs": 78, "juz": 27, "audioId": "055"}, {"id": 56, "name": "الواقعة", "type": "مكية", "ayahs": 96, "juz": 27, "audioId": "056"}, {"id": 57, "name": "الحديد", "type": "مدنية", "ayahs": 29, "juz": 27, "audioId": "057"}, {"id": 58, "name": "المجادلة", "type": "مدنية", "ayahs": 22, "juz": 28, "audioId": "058"}, {"id": 59, "name": "الحشر", "type": "مدنية", "ayahs": 24, "juz": 28, "audioId": "059"}, {"id": 60, "name": "الممتحنة", "type": "مدنية", "ayahs": 13, "juz": 28, "audioId": "060"}, {"id": 61, "name": "الصف", "type": "مدنية", "ayahs": 14, "juz": 28, "audioId": "061"}, {"id": 62, "name": "الجمعة", "type": "مدنية", "ayahs": 11, "juz": 28, "audioId": "062"}, {"id": 63, "name": "المنافقون", "type": "مدنية", "ayahs": 11, "juz": 28, "audioId": "063"}, {"id": 64, "name": "التغابن", "type": "مدنية", "ayahs": 18, "juz": 28, "audioId": "064"}, {"id": 65, "name": "الطلاق", "type": "مدنية", "ayahs": 12, "juz": 28, "audioId": "065"}, {"id": 66, "name": "التحريم", "type": "مدنية", "ayahs": 12, "juz": 28, "audioId": "066"}, {"id": 67, "name": "الملك", "type": "مكية", "ayahs": 30, "juz": 29, "audioId": "067"}, {"id": 68, "name": "القلم", "type": "مكية", "ayahs": 52, "juz": 29, "audioId": "068"}, {"id": 69, "name": "الحاقة", "type": "مكية", "ayahs": 52, "juz": 29, "audioId": "069"}, {"id": 70, "name": "المعارج", "type": "مكية", "ayahs": 44, "juz": 29, "audioId": "070"}, {"id": 71, "name": "نوح", "type": "مكية", "ayahs": 28, "juz": 29, "audioId": "071"}, {"id": 72, "name": "الجن", "type": "مكية", "ayahs": 28, "juz": 29, "audioId": "072"}, {"id": 73, "name": "المزمل", "type": "مكية", "ayahs": 20, "juz": 29, "audioId": "073"}, {"id": 74, "name": "المدثر", "type": "مكية", "ayahs": 56, "juz": 29, "audioId": "074"}, {"id": 75, "name": "القيامة", "type": "مكية", "ayahs": 40, "juz": 29, "audioId": "075"}, {"id": 76, "name": "الإنسان", "type": "مدنية", "ayahs": 31, "juz": 29, "audioId": "076"}, {"id": 77, "name": "المرسلات", "type": "مكية", "ayahs": 50, "juz": 29, "audioId": "077"}, {"id": 78, "name": "النبأ", "type": "مكية", "ayahs": 40, "juz": 30, "audioId": "078"}, {"id": 79, "name": "النازعات", "type": "مكية", "ayahs": 46, "juz": 30, "audioId": "079"}, {"id": 80, "name": "عبس", "type": "مكية", "ayahs": 42, "juz": 30, "audioId": "080"}, {"id": 81, "name": "التكوير", "type": "مكية", "ayahs": 29, "juz": 30, "audioId": "081"}, {"id": 82, "name": "الانفطار", "type": "مكية", "ayahs": 19, "juz": 30, "audioId": "082"}, {"id": 83, "name": "المطففين", "type": "مكية", "ayahs": 36, "juz": 30, "audioId": "083"}, {"id": 84, "name": "الانشقاق", "type": "مكية", "ayahs": 25, "juz": 30, "audioId": "084"}, {"id": 85, "name": "البروج", "type": "مكية", "ayahs": 22, "juz": 30, "audioId": "085"}, {"id": 86, "name": "الطارق", "type": "مكية", "ayahs": 17, "juz": 30, "audioId": "086"}, {"id": 87, "name": "الأعلى", "type": "مكية", "ayahs": 19, "juz": 30, "audioId": "087"}, {"id": 88, "name": "الغاشية", "type": "مكية", "ayahs": 26, "juz": 30, "audioId": "088"}, {"id": 89, "name": "الفجر", "type": "مكية", "ayahs": 30, "juz": 30, "audioId": "089"}, {"id": 90, "name": "البلد", "type": "مكية", "ayahs": 20, "juz": 30, "audioId": "090"}, {"id": 91, "name": "الشمس", "type": "مكية", "ayahs": 15, "juz": 30, "audioId": "091"}, {"id": 92, "name": "الليل", "type": "مكية", "ayahs": 21, "juz": 30, "audioId": "092"}, {"id": 93, "name": "الضحى", "type": "مكية", "ayahs": 11, "juz": 30, "audioId": "093"}, {"id": 94, "name": "الشرح", "type": "مكية", "ayahs": 8, "juz": 30, "audioId": "094"}, {"id": 95, "name": "التين", "type": "مكية", "ayahs": 8, "juz": 30, "audioId": "095"}, {"id": 96, "name": "العلق", "type": "مكية", "ayahs": 19, "juz": 30, "audioId": "096"}, {"id": 97, "name": "القدر", "type": "مكية", "ayahs": 5, "juz": 30, "audioId": "097"}, {"id": 98, "name": "البينة", "type": "مدنية", "ayahs": 8, "juz": 30, "audioId": "098"}, {"id": 99, "name": "الزلزلة", "type": "مدنية", "ayahs": 8, "juz": 30, "audioId": "099"}, {"id": 100, "name": "العاديات", "type": "مكية", "ayahs": 11, "juz": 30, "audioId": "100"}, {"id": 101, "name": "القارعة", "type": "مكية", "ayahs": 11, "juz": 30, "audioId": "101"}, {"id": 102, "name": "التكاثر", "type": "مكية", "ayahs": 8, "juz": 30, "audioId": "102"}, {"id": 103, "name": "العصر", "type": "مكية", "ayahs": 3, "juz": 30, "audioId": "103"}, {"id": 104, "name": "الهمزة", "type": "مكية", "ayahs": 9, "juz": 30, "audioId": "104"}, {"id": 105, "name": "الفيل", "type": "مكية", "ayahs": 5, "juz": 30, "audioId": "105"}, {"id": 106, "name": "قريش", "type": "مكية", "ayahs": 4, "juz": 30, "audioId": "106"}, {"id": 107, "name": "الماعون", "type": "مكية", "ayahs": 7, "juz": 30, "audioId": "107"}, {"id": 108, "name": "الكوثر", "type": "مكية", "ayahs": 3, "juz": 30, "audioId": "108"}, {"id": 109, "name": "الكافرون", "type": "مكية", "ayahs": 6, "juz": 30, "audioId": "109"}, {"id": 110, "name": "النصر", "type": "مدنية", "ayahs": 3, "juz": 30, "audioId": "110"}, {"id": 111, "name": "المسد", "type": "مكية", "ayahs": 5, "juz": 30, "audioId": "111"}, {"id": 112, "name": "الإخلاص", "type": "مكية", "ayahs": 4, "juz": 30, "audioId": "112"}, {"id": 113, "name": "الفلق", "type": "مكية", "ayahs": 5, "juz": 30, "audioId": "113"}, {"id": 114, "name": "الناس", "type": "مكية", "ayahs": 6, "juz": 30, "audioId": "114"}];
+
+    function renderAllSurahsGrid(filterText = '') {
+      const container = document.getElementById('all-surahs-grid');
+      if (!container) return;
+      
+      const filtered = ALL_SURAHS_DATA.filter(s => s.name.includes(filterText) || s.id.toString() === filterText);
+      container.innerHTML = filtered.map(s => `
+        <div onclick="playSurahAudio(${s.id})" class="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 hover:border-emerald-500/60 cursor-pointer transition-all flex flex-col justify-between group">
+          <div class="flex items-center justify-between text-[11px] mb-1">
+            <span class="w-6 h-6 rounded-full bg-slate-900 text-slate-400 font-bold flex items-center justify-center text-[10px] group-hover:bg-emerald-500/20 group-hover:text-emerald-400">${s.id}</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded ${s.type === 'مكية' ? 'bg-amber-500/10 text-amber-400' : 'bg-emerald-500/10 text-emerald-400'}">${s.type}</span>
+          </div>
+          <div class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors my-1">سورة ${s.name}</div>
+          <div class="flex items-center justify-between text-[10px] text-slate-500">
+            <span>${s.ayahs} آية</span>
+            <span class="flex items-center gap-0.5 text-emerald-500"><i data-lucide="play" class="w-3 h-3"></i> استماع</span>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function filterSurahsList() {
+      const q = document.getElementById('surah-search-input').value.trim();
+      renderAllSurahsGrid(q);
+    }
+
+    function playSurahAudio(surahId) {
+      const surah = ALL_SURAHS_DATA.find(s => s.id === surahId);
+      if (!surah) return;
+      
+      document.getElementById('current-playing-surah-title').innerText = `سورة ${surah.name} (آياتها: ${surah.ayahs} — ${surah.type})`;
+      const audio = document.getElementById('quran-audio-element');
+      const audioUrl = `https://server8.mp3quran.net/afs/${surah.audioId}.mp3`;
+      audio.src = audioUrl;
+      audio.play().catch(e => {
+        console.log('Playback notice:', e);
+      });
+    }
+
+    // 2. COMPREHENSIVE ADHKAR DATA & LOGIC
+    const ALL_ADHKAR_DATA = [{"category": "أذكار الصباح", "icon": "sunrise", "items": [{"id": "m1", "text": "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", "count": 1}, {"id": "m2", "text": "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ (سيد الاستغفار).", "count": 1}, {"id": "m3", "text": "بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ.", "count": 3}, {"id": "m4", "text": "رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا.", "count": 3}, {"id": "m5", "text": "يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ، أَصْلِحْ لِي شَأْنِي كُلَّهُ، وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ.", "count": 1}, {"id": "m6", "text": "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ.", "count": 3}]}, {"category": "أذكار المساء", "icon": "sunset", "items": [{"id": "e1", "text": "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ.", "count": 1}, {"id": "e2", "text": "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ.", "count": 3}, {"id": "e3", "text": "اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ.", "count": 1}, {"id": "e4", "text": "حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ.", "count": 7}, {"id": "e5", "text": "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ (حُطَّتْ خَطَايَاهُ وَإِنْ كَانَتْ مِثْلَ زَبَدِ الْبَحْرِ).", "count": 100}]}, {"category": "أذكار دبر الصلوات المكتوبة", "icon": "clock", "items": [{"id": "p1", "text": "أَسْتَغْفِرُ اللَّهَ، أَسْتَغْفِرُ اللَّهَ، أَسْتَغْفِرُ اللَّهَ، اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ.", "count": 1}, {"id": "p2", "text": "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، اللَّهُمَّ لَا مَانِعَ لِمَا أَعْطَيْتَ، وَلَا مُعْطِيَ لِمَا مَنَعْتَ، وَلَا يَنْفَعُ ذَا الْجَدِّ مِنْكَ الْجَدُّ.", "count": 1}, {"id": "p3", "text": "سُبْحَانَ اللَّهِ (33) ، الْحَمْدُ لِلَّهِ (33) ، اللَّهُ أَكْبَرُ (33) ، وتَمام المائة: لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", "count": 1}, {"id": "p4", "text": "آية الكرسي: «اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ...» (من قرأها دبر كل صلاة لم يمنعه من دخول الجنة إلا أن يموت).", "count": 1}]}, {"category": "أذكار النوم والاستيقاظ", "icon": "moon", "items": [{"id": "s1", "text": "بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ، فَإِنْ أَمْسَكْتَ نَفْسِي فَارْحَمْهَا، وَإِنْ أَرْسَلْتَهَا فَاحْفَظْهَا بِمَا تَحْفَظُ بِهِ عِبَادَكَ الصَّالِحِينَ.", "count": 1}, {"id": "s2", "text": "اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ.", "count": 3}, {"id": "s3", "text": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ (عند الاستيقاظ).", "count": 1}]}, {"category": "أدعية تفريج الهم والحزن والشدائد", "icon": "shield-check", "items": [{"id": "d1", "text": "لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ (دعاء ذي النون ما دعا به مكروب إلا فرج الله عنه).", "count": 3}, {"id": "d2", "text": "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ، وَغَلَبَةِ الرِّجَالِ.", "count": 1}, {"id": "d3", "text": "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ (كنز من كنوز الجنة ودواء لتسعة وتسعين داء أيسرها الهم).", "count": 10}]}];
+    let currentAdhkarCatIndex = 0;
+    let adhkarCounts = {};
+
+    function renderAdhkarTabs() {
+      const container = document.getElementById('adhkar-category-tabs');
+      if (!container) return;
+      container.innerHTML = ALL_ADHKAR_DATA.map((cat, i) => `
+        <button onclick="switchAdhkarCategory(${i})" class="flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+          currentAdhkarCatIndex === i 
+            ? 'bg-teal-600 text-white shadow-md' 
+            : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white'
+        }">
+          ${cat.category}
+        </button>
+      `).join('');
+    }
+
+    function renderActiveAdhkarList() {
+      const cat = ALL_ADHKAR_DATA[currentAdhkarCatIndex];
+      const container = document.getElementById('active-adhkar-list');
+      if (!container || !cat) return;
+
+      container.innerHTML = cat.items.map(item => {
+        const remaining = (adhkarCounts[item.id] !== undefined) ? adhkarCounts[item.id] : item.count;
+        const isDone = remaining === 0;
+
+        return `
+          <div onclick="decrementDhikr('${item.id}', ${item.count})" class="p-4 rounded-2xl border cursor-pointer transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+            isDone 
+              ? 'bg-teal-950/20 border-teal-800/40 text-slate-400' 
+              : 'bg-slate-950 border-slate-800 hover:border-teal-500/50 text-slate-100'
+          }">
+            <p class="text-xs md:text-sm leading-relaxed quran-font text-base text-teal-100/90 pr-2">${item.text}</p>
+            <div class="flex items-center gap-2 self-end sm:self-auto flex-shrink-0">
+              <span class="w-10 h-10 rounded-2xl flex items-center justify-center font-bold text-xs ${
+                isDone ? 'bg-teal-500 text-white' : 'bg-slate-900 text-teal-400 border border-slate-700'
+              }">
+                ${isDone ? 'تم ✓' : remaining}
+              </span>
+            </div>
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function switchAdhkarCategory(index) {
+      currentAdhkarCatIndex = index;
+      renderAdhkarTabs();
+      renderActiveAdhkarList();
+    }
+
+    function decrementDhikr(id, initialCount) {
+      playTasbeehClickSound();
+      if (adhkarCounts[id] === undefined) adhkarCounts[id] = initialCount;
+      if (adhkarCounts[id] > 0) {
+        adhkarCounts[id]--;
+        if (adhkarCounts[id] === 0) {
+          try {
+            confetti({ particleCount: 25, spread: 40, origin: { y: 0.8 }, colors: ['#14b8a6', '#34d399'] });
+          } catch(e){}
+        }
+      }
+      renderActiveAdhkarList();
+    }
+
+    // 3. KIDS GAME: FAITH KNIGHTS
+    const KIDS_QUESTS = [{"id": 1, "title": "المهمة 1: جزيرة الصدق والأمانة", "icon": "shield", "story": "أنت الفارس الصغير البطل في جزيرة الصدق! أثناء عودتك من المدرسة، وجدت محفظة نقود مفقودة على الأرض وبها نقود كثيرة ولا يراك أحد.", "question": "ماذا تفعل يا بطل الإسلام؟", "options": [{"text": "آخذها سريعاً وأشتري بها ألعاباً دون إخبار أحد", "correct": false, "feedback": "لا يا بطل! المسلم لا يأخذ مال غيره لأن الله يراه في كل مكان."}, {"text": "آخذها وأسلمها لإدارة المدرسة أو لشرطة الأمانات للبحث عن صاحبها", "correct": true, "feedback": "أحسنت يا بطل! الصدق والأمانة خلق النبي محمد ﷺ وكان يلقب بالصادق الأمين، ولك قصر في الجنة!"}], "rewardXP": 100, "hadith": "«عَلَيْكُمْ بِالصِّدْقِ، فَإِنَّ الصِّدْقَ يَهْدِي إِلَى الْبِرِّ، وَإِنَّ الْبِرَّ يَهْدِي إِلَى الْجَنَّةِ»"}, {"id": 2, "title": "المهمة 2: قلعة نور الصلاة", "icon": "sun", "story": "حان وقت صلاة العصر وأنت تلعب لعبة فيديو مفضلة جداً مع أصدقائك وسمعت المؤذن ينادي: «حي على الصلاة، حي على الفلاح».", "question": "كيف يتصرف فارس الإيمان القوي؟", "options": [{"text": "أتوقف عن اللعب فوراً، وأتوضأ بابتسامة وأصلي لله لأن الصلاة أهم من أي لعبة", "correct": true, "feedback": "الله أكبر! أثبتّ أنك فارس عظيم، الله أحب إليك من اللعب والصلاة ستنير وجهك وتوفقك في دراستك!"}, {"text": "أستمر في اللعب وأؤجل الصلاة حتى أنتهي من المراحل كلها", "correct": false, "feedback": "احذر يا بطل! تأخير الصلاة يسرق البركة ويجعل الشيطان يفرح، والصلاة لا تأخذ سوى 5 دقائق تجلب السعادة."}], "rewardXP": 100, "hadith": "سُئل النبي ﷺ: أَيُّ الْعَمَلِ أَحَبُّ إِلَى اللَّهِ؟ قَالَ: «الصَّلَاةُ عَلَى وَقْتِهَا»"}, {"id": 3, "title": "المهمة 3: وادي بر الوالدين", "icon": "heart", "story": "عادت أمك متعبة جداً من أعمال البيت وطلبت منك أن تحضر لها كوب ماء نظيف وتساعدها في ترتيب غرفتك.", "question": "ما هو رد فعلك يا حبيب رسول الله؟", "options": [{"text": "أتظاهر بالنوم أو أقول «أف» لأنني متعب ولا أريد التحرك", "correct": false, "feedback": "الله أمرنا أن لا نقول لهما «أف» أبداً؛ رضا الله في رضا الوالدين، وهما تعبا لأجلك كثيراً وأنت صغير."}, {"text": "أبتسم في وجهها وأسرع لإحضار الماء وأقبل رأسها وأقول: «حاضر يا أمي الحبيبة»", "correct": true, "feedback": "ما شاء الله! الجنة تحت أقدام الأمهات، وبرك لوالدتك فتح لك أبواب التوفيق والبركة في حياتك كلها!"}], "rewardXP": 100, "hadith": "«رِضَا الرَّبِّ فِي رِضَا الْوَالِدَيْنِ، وَسَخَطُ الرَّبِّ فِي سَخَطِ الْوَالِدَيْنِ»"}, {"id": 4, "title": "المهمة 4: واحة الرحمة والرفق بالضعفاء", "icon": "smile", "story": "رأيت زميلاً جديداً في الصف يبدو حزيناً وملابسه بسيطة وبعض الأطفال يضحكون عليه ويتنمرون.", "question": "ما هو الموقف الشجاع لفارس الإيمان؟", "options": [{"text": "أذهب إليه وأمسك بيده بابتسامة، وأشاركه طعامي وأصبح صديقه المخلص وأدافع عنه", "correct": true, "feedback": "هكذا كان أصحاب النبي ﷺ! «المسلم أخو المسلم لا يظلمه ولا يسلمه»، رفعت رأس الإسلام بقلبك الطيب!"}, {"text": "أقف مع الأطفال وأضحك معهم لكي لا يغضبوا مني", "correct": false, "feedback": "المؤمن شجاع لا يتبع الخطأ؛ السخرية من الناس محرمة في القرآن، والمسلم ينصر المظلوم دائماً."}], "rewardXP": 100, "hadith": "«مَنْ لَا يَرْحَمْ لَا يُرْحَمْ» و «الرَّاحِمُونَ يَرْحَمُهُمُ الرَّحْمَٰنُ»"}];
+    let currentQuestIndex = 0;
+    let kidsGameScore = parseInt(localStorage.getItem('faith_kids_score')) || 0;
+
+    function renderKidsQuest() {
+      const quest = KIDS_QUESTS[currentQuestIndex];
+      const box = document.getElementById('kids-quest-box');
+      if (!box || !quest) return;
+
+      document.getElementById('game-score-display').innerText = `${kidsGameScore} حسنة ⭐`;
+
+      let rank = "الفارس الصادق 🛡️";
+      if (kidsGameScore >= 400) rank = "قائد فرسان الجنة العظيم 👑🌟";
+      else if (kidsGameScore >= 200) rank = "فارس النور والرحمة ⚔️✨";
+      document.getElementById('game-knight-rank').innerText = rank;
+
+      box.innerHTML = `
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+          <span class="text-xs font-bold text-amber-400 bg-amber-950/60 px-3 py-1 rounded-xl border border-amber-800/40">
+            ${quest.title}
+          </span>
+          <span class="text-xs text-emerald-400 font-bold">+${quest.rewardXP} حسنة</span>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+          <span class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+            <i data-lucide="compass" class="w-4 h-4"></i>
+            <span>المشهد المثير:</span>
+          </span>
+          <p class="text-xs md:text-sm text-slate-200 leading-relaxed">${quest.story}</p>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-xs md:text-sm font-black text-white">${quest.question}</h4>
+          <div class="space-y-2">
+            ${quest.options.map((opt, i) => `
+              <button onclick="handleQuestAnswer(${i})" class="w-full text-right p-3.5 rounded-2xl border bg-slate-950/80 border-slate-800 hover:border-amber-500/60 text-xs text-slate-100 transition-all flex items-center justify-between group">
+                <span class="font-medium">${opt.text}</span>
+                <i data-lucide="chevron-left" class="w-4 h-4 text-slate-500 group-hover:text-amber-400 transition-colors"></i>
+              </button>
+            `).join('')}
+          </div>
+        </div>
+
+        <div id="quest-feedback-box" class="hidden p-4 rounded-2xl text-xs space-y-2"></div>
+      `;
+      lucide.createIcons();
+    }
+
+    function handleQuestAnswer(optionIndex) {
+      const quest = KIDS_QUESTS[currentQuestIndex];
+      const opt = quest.options[optionIndex];
+      const feedBox = document.getElementById('quest-feedback-box');
+      
+      feedBox.classList.remove('hidden');
+      if (opt.correct) {
+        playTasbeehClickSound();
+        kidsGameScore += quest.rewardXP;
+        localStorage.setItem('faith_kids_score', kidsGameScore.toString());
+        document.getElementById('game-score-display').innerText = `${kidsGameScore} حسنة ⭐`;
+
+        try {
+          confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 }, colors: ['#f59e0b', '#10b981', '#3b82f6'] });
+        } catch(e){}
+
+        feedBox.className = "p-4 rounded-2xl bg-emerald-950/60 border border-emerald-800 text-emerald-200 text-xs space-y-2";
+        feedBox.innerHTML = `
+          <div class="font-bold flex items-center gap-1.5 text-emerald-300">
+            <span>🎉 إجابة بطل حقيقي!</span>
+          </div>
+          <p>${opt.feedback}</p>
+          <div class="pt-2 border-t border-emerald-800/40 font-bold text-amber-300">
+            حديث شريف للبطل: ${quest.hadith}
+          </div>
+          <div class="pt-2">
+            <button onclick="nextQuest()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs">
+              المهمة التالية ➔
+            </button>
+          </div>
+        `;
+      } else {
+        feedBox.className = "p-4 rounded-2xl bg-rose-950/60 border border-rose-800 text-rose-200 text-xs space-y-1.5";
+        feedBox.innerHTML = `
+          <div class="font-bold flex items-center gap-1.5 text-rose-300">
+            <span>⚠️ حاول مرة أخرى يا بطل!</span>
+          </div>
+          <p>${opt.feedback}</p>
+        `;
+      }
+    }
+
+    function nextQuest() {
+      currentQuestIndex = (currentQuestIndex + 1) % KIDS_QUESTS.length;
+      renderKidsQuest();
+    }
+
+    // Quran 30 Juz Khatma State
+    let completedJuz = JSON.parse(localStorage.getItem('faith_quran_juz')) || [];
+
+    function renderQuranGrid() {
+      const container = document.getElementById('juz-grid-container');
+      if (!container) return;
+      let html = '';
+      for (let i = 1; i <= 30; i++) {
+        const isDone = completedJuz.includes(i);
+        html += `
+          <button onclick="toggleJuz(${i})" class="p-3 rounded-2xl border text-center transition-all ${
+            isDone 
+              ? 'bg-amber-500/20 border-amber-500 text-amber-300 shadow-md shadow-amber-500/10'
+              : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-white'
+          }">
+            <span class="text-[10px] text-slate-500 block mb-0.5">الجزء</span>
+            <span class="text-base font-black ${isDone ? 'text-amber-400' : 'text-slate-200'}">${i}</span>
+            <span class="text-[9px] block mt-1 ${isDone ? 'text-emerald-400 font-bold' : 'text-slate-600'}">${isDone ? 'تمت القراءة 🌟' : 'متاح للتلاوة'}</span>
+          </button>
+        `;
+      }
+      container.innerHTML = html;
+      document.getElementById('khatma-progress-text').innerText = `${completedJuz.length} / 30 جزء`;
+    }
+
+    function toggleJuz(num) {
+      const idx = completedJuz.indexOf(num);
+      if (idx > -1) {
+        completedJuz.splice(idx, 1);
+      } else {
+        completedJuz.push(num);
+        try {
+          confetti({ particleCount: 35, spread: 50, origin: { y: 0.8 }, colors: ['#f59e0b', '#10b981'] });
+        } catch(e){}
+      }
+      localStorage.setItem('faith_quran_juz', JSON.stringify(completedJuz));
+      renderQuranGrid();
+      renderPrayersGrid();
+      renderAllSurahsGrid();
+      renderAdhkarTabs();
+      renderKidsQuest();
+    }
+
+    
+    // Daily 5 Prayers Tracker
+    const PRAYERS_LIST = [
+      { id: 'fajr', name: 'الفجر', icon: '🌅' },
+      { id: 'dhuhr', name: 'الظهر', icon: '☀️' },
+      { id: 'asr', name: 'العصر', icon: '🌤️' },
+      { id: 'maghrib', name: 'المغرب', icon: '🌇' },
+      { id: 'isha', name: 'العشاء', icon: '🌙' }
+    ];
+    let dailyPrayers = JSON.parse(localStorage.getItem('faith_daily_prayers')) || {};
+
+    function renderPrayersGrid() {
+      const container = document.getElementById('prayers-check-grid');
+      if (!container) return;
+      const today = new Date().toISOString().slice(0, 10);
+      if (!dailyPrayers[today]) dailyPrayers[today] = [];
+
+      let doneCount = dailyPrayers[today].length;
+      document.getElementById('prayers-done-count').innerText = `${doneCount} / 5 صلوات`;
+
+      container.innerHTML = PRAYERS_LIST.map(p => {
+        const isDone = dailyPrayers[today].includes(p.id);
+        return `
+          <button onclick="togglePrayer('${p.id}')" class="p-2 rounded-xl border flex flex-col items-center justify-center transition-all ${
+            isDone 
+              ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300 shadow-md shadow-emerald-600/10'
+              : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-white'
+          }">
+            <span class="text-sm mb-1">${p.icon}</span>
+            <span class="text-[11px] font-bold">${p.name}</span>
+            <span class="text-[9px] mt-0.5 font-bold ${isDone ? 'text-emerald-400' : 'text-slate-600'}">${isDone ? 'أُدِّيت ✓' : 'لم تؤدَّ'}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function togglePrayer(prayerId) {
+      const today = new Date().toISOString().slice(0, 10);
+      if (!dailyPrayers[today]) dailyPrayers[today] = [];
+      const idx = dailyPrayers[today].indexOf(prayerId);
+      if (idx > -1) {
+        dailyPrayers[today].splice(idx, 1);
+      } else {
+        dailyPrayers[today].push(prayerId);
+        try {
+          confetti({ particleCount: 30, spread: 45, origin: { y: 0.7 }, colors: ['#10b981', '#34d399'] });
+        } catch(e){}
+      }
+      localStorage.setItem('faith_daily_prayers', JSON.stringify(dailyPrayers));
+      renderPrayersGrid();
+      renderAllSurahsGrid();
+      renderAdhkarTabs();
+      renderKidsQuest();
+    }
+
+    
+    function copyDuaa() {
+      const duaaText = document.getElementById('active-stage-duaa').innerText;
+      navigator.clipboard.writeText(duaaText).then(() => {
+        alert('تم نسخ دعاء المرحلة بنجاح! ردد به بقلب حاضر.');
+      });
+    }
+
+    
+    function continueAsGuest() {
+      currentUser = { fullName: "زائر كريم", email: "guest@lifejourney.local" };
+      localStorage.setItem('faith_user', JSON.stringify(currentUser));
+      updateAuthHeader();
+      closeAuthModal();
+    }
+
+    // State Variables
+    let currentStageId = 1;
+    let completedGoals = JSON.parse(localStorage.getItem('faith_completed_goals')) || [];
+    let stageNotes = JSON.parse(localStorage.getItem('faith_notes')) || [];
+    let tasbeehCount = parseInt(localStorage.getItem('faith_tasbeeh_count')) || 0;
+    let currentUser = JSON.parse(localStorage.getItem('faith_user')) || null;
+
+    function saveState() {
+      localStorage.setItem('faith_completed_goals', JSON.stringify(completedGoals));
+      localStorage.setItem('faith_notes', JSON.stringify(stageNotes));
+      localStorage.setItem('faith_tasbeeh_count', tasbeehCount.toString());
+      updateGamification();
+    }
+
+    // Render Navigation
+    function renderNav() {
+      const container = document.getElementById('stages-nav-list');
+      container.innerHTML = STAGES_MASTER.map(stage => {
+        const isCurrent = stage.id === currentStageId;
+        const total = stage.goals.length;
+        const done = stage.goals.filter(g => completedGoals.includes(g.id)).length;
+        const isDone = total > 0 && done === total;
+        const title = currentLang === 'en' ? stage.title_en : (currentLang === 'fr' ? stage.title_fr : stage.title);
+
+        return `
+          <button onclick="selectStage(${stage.id})" class="flex-shrink-0 px-4 py-2.5 rounded-2xl border text-right transition-all min-w-[210px] ${
+            isCurrent
+              ? 'bg-emerald-600/20 border-emerald-500 text-white shadow-xl shadow-emerald-500/10'
+              : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+          }">
+            <div class="flex items-center justify-between text-[11px] mb-1">
+              <span class="font-bold ${isCurrent ? 'text-emerald-400' : 'text-slate-500'}">#${stage.stageNumber}</span>
+              ${isDone ? '<span class="text-emerald-400 font-bold">مكتملة 🌟</span>' : `<span>${done}/${total}</span>`}
+            </div>
+            <div class="text-xs font-bold truncate text-white">${title}</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">${stage.ageRange}</div>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function renderActiveStage() {
+      const stage = STAGES_MASTER.find(s => s.id === currentStageId) || STAGES_MASTER[0];
+      const title = currentLang === 'en' ? stage.title_en : (currentLang === 'fr' ? stage.title_fr : stage.title);
+
+      document.getElementById('active-stage-badge').innerText = `المرحلة ${stage.stageNumber}`;
+      document.getElementById('active-age-range').innerText = stage.ageRange;
+      document.getElementById('active-stage-title').innerText = title;
+      document.getElementById('active-stage-vision').innerText = stage.vision;
+      document.getElementById('active-stage-mission').innerText = stage.mission;
+      document.getElementById('active-stage-spiritual').innerText = stage.spiritualAdvice;
+      if (document.getElementById('active-stage-psycho')) {
+        document.getElementById('active-stage-psycho').innerText = stage.psychoState || '';
+      }
+      if (document.getElementById('active-stage-medicine')) {
+        document.getElementById('active-stage-medicine').innerText = stage.faithMedicine || '';
+      }
+      if (document.getElementById('active-stage-story')) {
+        document.getElementById('active-stage-story').innerText = stage.propheticStory || '';
+      }
+      if (document.getElementById('active-stage-duaa')) {
+        document.getElementById('active-stage-duaa').innerText = stage.duaaOfStage || '';
+      }
+      if (document.getElementById('active-stage-habit')) {
+        document.getElementById('active-stage-habit').innerText = stage.dailyHabit || '';
+      }
+
+      // Goals
+      const total = stage.goals.length;
+      const done = stage.goals.filter(g => completedGoals.includes(g.id)).length;
+      document.getElementById('goals-count-badge').innerText = `${done} من ${total} منجز`;
+
+      const listContainer = document.getElementById('goals-list-box');
+      listContainer.innerHTML = stage.goals.map(goal => {
+        const isDone = completedGoals.includes(goal.id);
+        return `
+          <div onclick="toggleGoal('${goal.id}')" class="flex items-center justify-between p-3.5 rounded-2xl border cursor-pointer transition-all ${
+            isDone
+              ? 'bg-emerald-950/20 border-emerald-800/40 text-slate-400'
+              : 'bg-slate-950/80 border-slate-800 hover:border-slate-700 text-slate-100 hover:bg-slate-900/60'
+          }">
+            <div class="flex items-center gap-3">
+              <div class="w-6 h-6 rounded-full flex items-center justify-center ${
+                isDone ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50' : 'border border-slate-700 bg-slate-900'
+              }">
+                ${isDone ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : ''}
+              </div>
+              <span class="text-xs font-semibold leading-relaxed ${isDone ? 'line-through text-slate-400' : 'text-slate-100'}">${goal.title}</span>
+            </div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded ${isDone ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-800 text-slate-400'}">+50 XP</span>
+          </div>
+        `;
+      }).join('');
+
+      renderNotes();
+      lucide.createIcons();
+    }
+
+    function toggleGoal(goalId) {
+      const idx = completedGoals.indexOf(goalId);
+      if (idx > -1) {
+        completedGoals.splice(idx, 1);
+      } else {
+        completedGoals.push(goalId);
+        try {
+          confetti({ particleCount: 40, spread: 60, origin: { y: 0.8 }, colors: ['#10b981', '#f59e0b', '#06b6d4'] });
+        } catch(e){}
+      }
+      saveState();
+      renderNav();
+      renderActiveStage();
+    }
+
+    function selectStage(id) {
+      currentStageId = id;
+      renderFiqhSection();
+      currentStageId = id;
+      renderNav();
+      renderActiveStage();
+    }
+
+    // Tabs Switcher
+    function switchMainTab(tab) {
+      if (tab === 'fiqh') renderFiqhSection();
+
+      if (tab === 'quran-all') renderAllSurahsGrid();
+      if (tab === 'adhkar') { renderAdhkarTabs(); renderActiveAdhkarList(); }
+      if (tab === 'kids-game') renderKidsQuest();
+
+      const sections = ['stages', 'fiqh', 'diagnostic', 'institution', 'quran', 'quran-all', 'adhkar', 'kids-game'];
+      sections.forEach(s => {
+        const sec = document.getElementById(`section-${s}`);
+        const btn = document.getElementById(`tab-${s}-btn`);
+        if (s === tab) {
+          sec.classList.remove('hidden');
+          btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white flex items-center gap-2 transition-all";
+        } else {
+          sec.classList.add('hidden');
+          btn.className = "px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-2 transition-all";
+        }
+      });
+      lucide.createIcons();
+    }
+
+    // AI Coach Chat
+    function sendUserCoachQuery() {
+      const input = document.getElementById('ai-user-query');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const box = document.getElementById('ai-chat-box');
+      box.innerHTML += `<div class="p-2 rounded-xl bg-blue-600 text-white text-xs mr-auto max-w-[85%]">${text}</div>`;
+      input.value = '';
+
+      const stage = STAGES_MASTER.find(s => s.id === currentStageId);
+      setTimeout(() => {
+        const reply = `🌿 بخصوص سؤالك، في مرحلة (${stage.title}): مفتاح التوفيق هو الاستعانة بالله بالدعاء، والبدء بالهدف: "${stage.goals[0].title}". «احْرِصْ عَلَى مَا يَنْفَعُكَ، وَاسْتَعِنْ بِاللَّهِ وَلَا تَعْجَزْ».`;
+        box.innerHTML += `<div class="p-2.5 rounded-2xl bg-slate-950 border border-slate-800 text-slate-300 text-xs leading-relaxed max-w-[95%]">${reply}</div>`;
+        box.scrollTop = box.scrollHeight;
+      }, 350);
+    }
+
+    // Notes System
+    function addStageNote() {
+      const input = document.getElementById('note-text-input');
+      const text = input.value.trim();
+      if (!text) return;
+      stageNotes.unshift({ id: 'note-' + Date.now(), stageId: currentStageId, text, date: new Date().toLocaleDateString('ar-EG') });
+      input.value = '';
+      saveState();
+      renderNotes();
+    }
+
+    function renderNotes() {
+      const filtered = stageNotes.filter(n => n.stageId === currentStageId);
+      document.getElementById('notes-count-badge').innerText = `${filtered.length} تدوينة`;
+      const container = document.getElementById('notes-render-list');
+      if (filtered.length === 0) {
+        container.innerHTML = '<div class="text-[11px] text-slate-500 text-center py-2">لا توجد ملاحظات مدونة في هذه المرحلة بعد.</div>';
+        return;
+      }
+      container.innerHTML = filtered.map(n => `
+        <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs flex justify-between items-start gap-2">
+          <p class="text-slate-300 leading-relaxed">${n.text}</p>
+          <span class="text-[10px] text-slate-500 flex-shrink-0">${n.date}</span>
+        </div>
+      `).join('');
+    }
+
+    // Tasbeeh Logic
+    function openTasbeehModal() {
+      document.getElementById('tasbeeh-modal').classList.remove('hidden');
+      document.getElementById('tasbeeh-modal').classList.add('flex');
+      document.getElementById('tasbeeh-count').innerText = tasbeehCount;
+    }
+    function closeTasbeehModal() {
+      document.getElementById('tasbeeh-modal').classList.add('hidden');
+      document.getElementById('tasbeeh-modal').classList.remove('flex');
+    }
+    function incrementTasbeeh() {
+      playTasbeehClickSound();
+      tasbeehCount++;
+      document.getElementById('tasbeeh-count').innerText = tasbeehCount;
+      document.getElementById('tasbeeh-total-counter').innerText = `${tasbeehCount} تسبيحة`;
+      saveState();
+    }
+    function resetTasbeeh() {
+      if (confirm('هل تريد تصفير عداد التسبيح؟')) {
+        tasbeehCount = 0;
+        document.getElementById('tasbeeh-count').innerText = '0';
+        document.getElementById('tasbeeh-total-counter').innerText = '0 تسبيحة';
+        saveState();
+      }
+    }
+    function changeDhikr(phrase) {
+      document.getElementById('active-dhikr-phrase').innerText = phrase;
+    }
+
+    // Gamification & Overall Stats
+    function updateGamification() {
+      const xp = completedGoals.length * 50;
+      document.getElementById('header-xp').innerText = `${xp} XP`;
+
+      let total = 0;
+      STAGES_MASTER.forEach(s => total += s.goals.length);
+      const pct = total > 0 ? Math.round((completedGoals.length / total) * 100) : 0;
+      document.getElementById('overall-percentage').innerText = `${pct}% مكتمل`;
+
+      let level = "المستوى 1 (مبتدئ 🌱)";
+      if (xp >= 600) level = "المستوى 4 (حكيم الأمة 👑)";
+      else if (xp >= 300) level = "المستوى 3 (قائد مبادر 🚀)";
+      else if (xp >= 150) level = "المستوى 2 (ساعٍ في الخير 🌟)";
+      document.getElementById('header-user-level').innerText = level;
+    }
+
+    // Viral Share Card
+    function openShareCanvasModal() {
+      document.getElementById('canvas-pct').innerText = document.getElementById('overall-percentage').innerText;
+      document.getElementById('canvas-xp').innerText = document.getElementById('header-xp').innerText;
+      if (currentUser) {
+        document.getElementById('canvas-user-name').innerText = currentUser.fullName;
+      }
+      document.getElementById('share-modal').classList.remove('hidden');
+      document.getElementById('share-modal').classList.add('flex');
+      lucide.createIcons();
+    }
+    function closeShareModal() {
+      document.getElementById('share-modal').classList.add('hidden');
+      document.getElementById('share-modal').classList.remove('flex');
+    }
+    function downloadShareCard() {
+      const card = document.getElementById('canvas-card');
+      html2canvas(card).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'My-LifeJourney-Faith-Card.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
+
+    // Certificate Modal
+    function openCertificateModal() {
+      const stage = STAGES_MASTER.find(s => s.id === currentStageId);
+      document.getElementById('cert-stage-name').innerText = `المرحلة #${stage.stageNumber}: ${stage.title}`;
+      document.getElementById('cert-date').innerText = new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+      if (currentUser) {
+        document.getElementById('cert-user-name').value = currentUser.fullName;
+      }
+      document.getElementById('cert-modal').classList.remove('hidden');
+      document.getElementById('cert-modal').classList.add('flex');
+      lucide.createIcons();
+    }
+    function closeCertificateModal() {
+      document.getElementById('cert-modal').classList.add('hidden');
+      document.getElementById('cert-modal').classList.remove('flex');
+    }
+
+    // Diagnostic Quiz
+    
+    function submitDiagnosticQuiz() {
+      const age = parseInt(document.getElementById('quiz-age').value);
+      if (isNaN(age) || age < 0) {
+        alert('يرجى إدخال عمرك بشكل صحيح للمساعدة في التشخيص.');
+        return;
+      }
+      const match = STAGES_MASTER.find(s => age >= s.minAge && age < s.maxAge) || STAGES_MASTER[STAGES_MASTER.length - 1];
+      const challenge = document.getElementById('quiz-challenge').value;
+      const customProblemText = (document.getElementById('quiz-custom-problem') ? document.getElementById('quiz-custom-problem').value.trim() : '');
+
+      let diagnosis = {
+        whyImportant: "",
+        steps: [],
+        psychoRemedy: "",
+        duaa: ""
+      };
+
+      if (challenge === 'habits') {
+        diagnosis.whyImportant = "المواظبة على الصلاة وترك المعاصي ليست مجرد واجب، بل هي الحصن النفسي الوحيد ضد الاكتئاب وضيق الصدر. الصلاة تفصلك عن ضغوط الدنيا 5 مرات يومياً لتشحن روحك، والمعصية تخلف ظلمة في القلب وثقلاً في البدن.";
+        diagnosis.steps = [
+          "تطبيق قاعدة (الدقيقة الأولى والوضوء الفوري): بمجرد سماع الأذان، لا تنتظر ثانية واحدة، توضأ مباشرة؛ لأن التسويف هو سلاح الشيطان الأول.",
+          "القليل الدائم خير من الكثير المنقطع: ابدأ بصفحة واحدة فقط من المصحف يومياً بعد الفجر، وركعتي الضحى، ولا ترهق نفسك في البداية حتى تعتاد نفسك الطاعة بحب.",
+          "دفن المعصية فوراً بحسنة: كلما وقعت في معصية أو ذنب، توضأ فوراً وصلِّ ركعتين وتصدق بمبلغ بسيط؛ فإن الحسنات يذهبن السيئات، وسييأس الشيطان منك.",
+          "عزل الهاتف في أوقات الخلوة: لا تدخل الهاتف إلى فراش نومك، فإن 90% من الانتكاسات والمعاصي تقع بسبب العبث بالهاتف في خلوة الليل."
+        ];
+        diagnosis.psychoRemedy = "النفس كالأرض البور، تحتاج إلى ري مستمر بالذكر. إذا شعرت بالفتور، فاعلم أنه طبيعي، ولكن إياك وترك الفرائض، فالصلاة هي حبل النجاة المتصل بالله.";
+        diagnosis.duaa = "«يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ، أَصْلِحْ لِي شَأْنِي كُلَّهُ، وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ»";
+      } else if (challenge === 'career') {
+        diagnosis.whyImportant = "طلب الاستقلال والرزق الحلال في سنك عبادة عظيمة ترفع درجاتك؛ لأن الرزق الحلال يورث استجابة الدعاء وبركة الذرية وراحة البال، والرزق مقسوم عند الله لا ينال بمعصيته.";
+        diagnosis.steps = [
+          "تحديد مهارة واحدة ذات عائد مرتفع (High-Income Skill): ركز على تعلم مهارة رقمية أو مهنية واحدة لمدة 6 أشهر يومياً بلا تشتت.",
+          "المواظبة اليومية على صلاة الفجر والتبكير: البركة الحقيقية في الصباح الباكر؛ «بورك لأمتي في بكورها»، ابدأ مذاكرتك أو عملك بعد الفجر مباشرة.",
+          "التحري المطلق للرزق الحلال: احذر من المكاسب السريعة المشبوهة أو الربا أو التداول القائم على الغرر، فدرهم حلال يبارك الله فيه خير من ملايين الحرام.",
+          "الصدقة وصلاة الاستخارة الدائمة: اجعل الصدقة عادة أسبوعية، واستخر الله قبل كل قرار مهني أو دراسي."
+        ];
+        diagnosis.psychoRemedy = "اطمئن، واعلم أن ما أخطأك لم يكن ليصيبك، وما أصابك لم يكن ليخطئك. ابذل أقصى جهدك في الأسباب وعلق قلبك بمسبب الأسباب وحده.";
+        diagnosis.duaa = "«اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ»";
+      } else if (challenge === 'family') {
+        diagnosis.whyImportant = "الأسرة هي الملاذ الأخير والقلعة التي تصنع شخصية الأجيال. إذا صلحت صلح المجتمع كله، وكل جهد وإحسان تبذله لأهلك يثقل ميزان حسناتك يوم القيامة.";
+        diagnosis.steps = [
+          "فن التغافل الذكي (نصف الحكمة في التغافل): لا تقف عند كل هفوة أو زلة، فالعلاقات تدوم بالصبر والتجاوز عن الصغائر.",
+          "تحريم الصراخ والغضب في البيت: الغضب من الشيطان ويهدم جسور الود، تدرب على السكوت والوضوء وتغيير المكان عند ثوران الغضب.",
+          "جلسة ودّ واستماع أسبوعية: تخصيص ساعة أسبوعياً للاستماع لأفراد الأسرة ومشاكلهم بدون نقد أو لوم قارس.",
+          "تعمير البيت بالقرآن والصلاة جماعة: قراءة سورة البقرة تدفع الشياطين وتجلب ملائكة الرحمة لبيتك."
+        ];
+        diagnosis.psychoRemedy = "البيوت لا تبنى على الحب وحده، بل تبنى على المودة والرحمة والتقوى. تذكر محاسن شريك حياتك وأهلك إذا غضبت من عيب.";
+        diagnosis.duaa = "«رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا»";
+      } else {
+        diagnosis.whyImportant = "السكينة والسلام الداخلي هما أثمن ما يناله العبد في الدنيا. حين يطمئن قلبك، لا تضرك مصائب الدنيا، وتعيش في جنة مبكرة قبل جنة الآخرة.";
+        diagnosis.steps = [
+          "خلوة التصفية اليومية (10 دقائق): اجلس في مكان هادئ بمفردك بعد العشاء، واستغفر الله وتب إليه وتأمل في نعم الله عليك.",
+          "التخلي عن المقارنات ومواقع التواصل: المقارنة سارقة السعادة، احذف الحسابات التي تشعرك بالنقص أو تشعل فيك الحسد والرغبة في الدنيا.",
+          "صلاة ركعتين في جوف الليل (الوتر): أفرغ همك كله في السجود بين يدي الله، واطلب منه أن يملأ قلبك طمأنينة ورضا.",
+          "المداومة على أذكار الصباح والمساء: فإنها الحصن الحصين من الهم والحزن والعين والقلق."
+        ];
+        diagnosis.psychoRemedy = "«أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ». اعلم أن كل ضيق تشعر به هو نداء من الله لتقترب منه أكثر.";
+        diagnosis.duaa = "«اللَّهُمَّ إِنِّي عَبْدُكَ، ابْنُ عَبْدِكَ، ابْنُ أَمَتِكَ، نَاصِيَتِي بِيَدِكَ، مَاضٍ فِيَّ حُكْمُكَ، عَدْلٌ فِيَّ قَضَاؤُكَ، أَسْأَلُكَ بِكُلِّ اسْمٍ هُوَ لَكَ سَمَّيْتَ بِهِ نَفْسَكَ، أَوْ أَنْزَلْتَهُ فِي كِتَابِكَ، أَوْ عَلَّمْتَهُ أَحَدًا مِنْ خَلْقِكَ، أَوْ اسْتَأْثَرْتَ بِهِ فِي عِلْمِ الْغَيْبِ عِنْدَكَ، أَنْ تَجْعَلَ الْقُرْآنَ رَبِيعَ قَلْبِي، وَنُورَ صَدْرِي، وَجَلَاءَ حُزْنِي، وَذَهَابَ هَمِّي»";
+      }
+
+      // Render Rich Results
+      const resContainer = document.getElementById('quiz-result');
+      resContainer.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-emerald-800/40">
+            <span class="text-xs font-bold bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full border border-emerald-500/30">
+              المحطة المشخصة: ${match.title} (${match.ageRange})
+            </span>
+            <span class="text-xs text-slate-400">تشخيص مخصص وشامل</span>
+          </div>
+
+          <!-- 1. لماذا هذا الأمر مصيري في حياتك ودينك؟ -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-1.5">
+            <h5 class="text-xs font-black text-amber-400 flex items-center gap-1.5">
+              <span>🌟</span>
+              <span>أولاً: لماذا هذا الأمر مصيري في حياتك وآخرتك؟</span>
+            </h5>
+            <p class="text-xs text-slate-300 leading-relaxed">${diagnosis.whyImportant}</p>
+          </div>
+
+          <!-- 2. خطوات الحل العملية المباشرة -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+            <h5 class="text-xs font-black text-emerald-400 flex items-center gap-1.5">
+              <span>📋</span>
+              <span>ثانياً: خطة الحل العملية خطوة بخطوة:</span>
+            </h5>
+            <ul class="space-y-2 text-xs text-slate-300">
+              ${diagnosis.steps.map((st, i) => `
+                <li class="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-800">
+                  <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center flex-shrink-0 text-[11px]">${i+1}</span>
+                  <span class="leading-relaxed">${st}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <!-- 3. العلاج النفسي والروحي -->
+          <div class="bg-indigo-950/30 p-4 rounded-2xl border border-indigo-800/40 space-y-1.5">
+            <h5 class="text-xs font-black text-indigo-400 flex items-center gap-1.5">
+              <span>🧠</span>
+              <span>ثالثاً: البلسم النفسي والروحي لتهدئة قلقك:</span>
+            </h5>
+            <p class="text-xs text-indigo-200 leading-relaxed">${diagnosis.psychoRemedy}</p>
+          </div>
+
+          <!-- 4. الدعاء المأثور للفرج -->
+          <div class="bg-amber-950/30 p-4 rounded-2xl border border-amber-800/40 space-y-2 text-center">
+            <span class="text-xs font-black text-amber-400 block">🤲 رابعاً: دعاء الفرج المستجاب لمشكلتك (ردد به بيقين):</span>
+            <p class="text-xs md:text-sm text-amber-200 quran-font leading-relaxed font-bold">${diagnosis.duaa}</p>
+          </div>
+
+          <div class="pt-2 text-center">
+            <button onclick="selectStage(${match.id}); switchMainTab('stages');" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition-all shadow-lg">
+              الانتقال إلى خطة محطة (${match.title}) الآن
+            </button>
+          </div>
+        </div>
+      `;
+      resContainer.classList.remove('hidden');
+      resContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+
+
+    // Export Institution CSV
+    function exportInstitutionReport() {
+      const csv = "اسم الطالب,المرحلة,نسبة الإنجاز,رصيد التسبيح\nيوسف أحمد,رياض الأطفال,85%,120\nفاطمة الزهراء,الابتدائية,92%,340\nعمر خالد,المراهقة,60%,90";
+      const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'تقرير_المؤسسة_التربوي.csv';
+      a.click();
+    }
+
+    // Auth Modal Handlers (Login / Signup / Forgot Password)
+    function openAuthModal(tab) {
+      document.getElementById('auth-modal').classList.remove('hidden');
+      document.getElementById('auth-modal').classList.add('flex');
+      switchAuthTab(tab || 'login');
+    }
+    function closeAuthModal() {
+      document.getElementById('auth-modal').classList.add('hidden');
+      document.getElementById('auth-modal').classList.remove('flex');
+    }
+    function switchAuthTab(tab) {
+      ['login', 'signup', 'forgot'].forEach(t => {
+        const form = document.getElementById(`form-${t}`);
+        const btn = document.getElementById(`tab-auth-${t}`);
+        if (t === tab) {
+          form.classList.remove('hidden');
+          btn.className = "text-sm font-bold text-emerald-400 border-b-2 border-emerald-400 pb-2";
+        } else {
+          form.classList.add('hidden');
+          btn.className = "text-sm font-bold text-slate-400 hover:text-white pb-2";
+        }
+      });
+    }
+
+    function handleAuthSubmit(e, type) {
+      e.preventDefault();
+      if (type === 'login') {
+        const email = document.getElementById('login-email').value;
+        currentUser = { fullName: email.split('@')[0], email };
+        localStorage.setItem('faith_user', JSON.stringify(currentUser));
+        updateAuthHeader();
+        closeAuthModal();
+        alert('مرحباً بك! تم تسجيل الدخول بنجاح وحفظ بياناتك.');
+      } else if (type === 'signup') {
+        const fullName = document.getElementById('signup-name').value;
+        const email = document.getElementById('signup-email').value;
+        currentUser = { fullName, email };
+        localStorage.setItem('faith_user', JSON.stringify(currentUser));
+        updateAuthHeader();
+        closeAuthModal();
+        alert(`أهلاً بك يا ${fullName}! تم إنشاء حسابك المجاني بنجاح.`);
+      } else if (type === 'forgot') {
+        const email = document.getElementById('forgot-email').value;
+        alert(`تم إرسال رمز استعادة كلمة المرور الفوري إلى: ${email}`);
+        switchAuthTab('login');
+      }
+    }
+
+    function updateAuthHeader() {
+      const slot = document.getElementById('auth-header-slot');
+      if (currentUser) {
+        slot.innerHTML = `
+          <div class="flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-xl">
+            <i data-lucide="user-check" class="w-4 h-4 text-emerald-400"></i>
+            <span class="text-xs font-bold text-slate-200">${currentUser.fullName}</span>
+            <button onclick="handleLogout()" title="تسجيل الخروج" class="text-slate-500 hover:text-rose-400 text-xs mr-1">
+              <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        `;
+      } else {
+        slot.innerHTML = `
+          <button onclick="openAuthModal('login')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 font-bold text-white text-xs transition-all shadow-md shadow-emerald-600/20">
+            <i data-lucide="log-in" class="w-4 h-4"></i>
+            <span data-i18n="login">تسجيل الدخول</span>
+          </button>
+        `;
+      }
+      lucide.createIcons();
+    }
+
+    function handleLogout() {
+      if (confirm('هل ترغب في تسجيل الخروج؟')) {
+        currentUser = null;
+        localStorage.removeItem('faith_user');
+        updateAuthHeader();
+      }
+    }
+
+    // PWA Support
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('pwa-install-btn').classList.remove('hidden');
+      document.getElementById('pwa-install-btn').classList.add('flex');
+    });
+
+    function installPwaPrompt() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            document.getElementById('pwa-install-btn').classList.add('hidden');
+          }
+          deferredPrompt = null;
+        });
+      } else {
+        alert("لتثبيت التطبيق على جهازك: اضغط على خيارات المتصفح (⋮) ثم اختر 'إضافة إلى الشاشة الرئيسية' أو 'Install App'");
+      }
+    }
+
+    // Init & Immediate Auth Gatekeeper
+    window.addEventListener('DOMContentLoaded', () => {
+      setLanguage(currentLang);
+      updateAuthHeader();
+      saveState();
+      document.getElementById('tasbeeh-total-counter').innerText = `${tasbeehCount} تسبيحة`;
+      renderQuranGrid();
+      renderPrayersGrid();
+      renderAllSurahsGrid();
+      renderAdhkarTabs();
+      renderKidsQuest();
+      lucide.createIcons();
+
+      // Show Auth Modal immediately upon opening if user is not logged in
+      if (!currentUser) {
+        setTimeout(() => {
+          openAuthModal('login');
+        }, 200);
+      }
+    });
+  </script>
+</body>
+</html>
